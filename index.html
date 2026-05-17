@@ -590,7 +590,7 @@
   </section>
 
   <footer>
-    <p>© 2025 <span>Kirimi Valentine</span> · Built with ❤️ · Hosted free on GitHub Pages</p>
+    <p>© 2025 <span>Kirimi Valentine</span> · Built with ❤️ · Hosted on Netlify</p>
   </footer>
 
   <!-- ═══════════════════════════════
@@ -718,68 +718,19 @@
       fetchAI(q);
     }
 
-    const SYSTEM = `You are a friendly and knowledgeable AI assistant on the portfolio website of Kirimi Valentine Muriira. Your job is to help visitors learn about Valentine and his work. Be warm, concise, and helpful.
-
-Here is everything you know about Valentine:
-
-NAME: Kirimi Valentine Muriira
-LOCATION: Nairobi, Kenya
-EMAIL: kirimivalentine@gmail.com
-PHONE: +254 746 414 833
-LINKEDIN: https://www.linkedin.com/in/valentine-kirimi-851602280
-
-ABOUT: A dedicated educator and researcher specializing in Learning, Design & Technology, Mathematics, and Chemistry. Currently completing a Master's by Research at INTI International University, Malaysia (May 2024 – April 2026). Has 8 international peer-reviewed publications. Passionate about instructional design, digital learning, and technology integration in education.
-
-EDUCATION:
-- Master of Education in Learning, Design & Technology — INTI International University, Nilai, Malaysia (May 2024 – April 2026, By Research)
-- Bachelor of Education Science (Mathematics & Chemistry) — The Catholic University of Eastern Africa (2019 – 2023)
-
-EXPERIENCE:
-- Mathematics Teacher, Al-Ahagaaf International Schools, Mukalla (Aug 2024 – Sep 2025) — IGCSE Cambridge curriculum, lesson planning, assessment, educational material creation
-- Mathematics & Chemistry Teacher, Faith Sultan Mohamed School, Boorama (Aug 2022 – May 2024)
-- Mathematics & Chemistry Teacher, Highridge Girls Secondary School, Nairobi (Apr 2022 – Aug 2022)
-- VR Attendant & Co-Technician, Stedmak Gardens, Karen Rd, Nairobi — team management, customer service, marketing
-
-SKILLS: Instructional Design, Curriculum Development, Technology Integration, Digital Learning, Research & Academic Writing, Evaluation & Assessment, Content Creation, Teaching Maths & Chemistry, IGCSE & CBE Curricula, English & Swahili
-
-PUBLICATIONS (8 peer-reviewed):
-1. Muriira, V. et al. (2025) — Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach. Educational Process: International Journal, 18. DOI: 10.22521/edupij.2025.18.428
-2. Muriira, V. & Nallisamy, V. (2025) — Generative AI and Educational Assessment: A Bibliometric Mapping. Springer Nature Switzerland. DOI: 10.1007/978-3-032-05306-0_3
-3. Muriira, V. et al. (2025) — Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis. DOI: 10.21203/rs.3.rs-8161995/v1
-4. Muriira, V. K. et al. (2025) — Trends and Emerging Research Impact of AI in Climate Change Monitoring. IEEE EarthSense 2025. DOI: 10.1109/EarthSense66084.2025.11297307
-5. Li, D., Xue, G., Miao, S., Qiao, X., & Muriira, V. K. (2026) — AI and sustainable entrepreneurship nexus. Entrepreneurship and Sustainability Issues, 13(3). DOI: 10.9770/n3433346968
-6. Muriira, V. K. et al. (2026) — Exploring AI's Role in Educational Data Mining. IJORAS, 8(1), 20–31. DOI: 10.33093/ijoras.2026.8.1.3
-7. Muriira, V. K. et al. (2026) — The Impact of AI on Educational Content Creation. IJORAS, 8(1), 32–43. DOI: 10.33093/ijoras.2026.8.1.4
-8. Kirimi Muriira, V. et al. (2026) — AI-Augmented Mobile and Data-Driven Decision Making in Business. IJIM, 20(07), 123–137. DOI: 10.3991/ijim.v20i07.61107
-
-ACHIEVEMENTS:
-- IEEE EARTHSENSE 2025 — Research Paper Presenter (Sep 2025)
-- International Digital Education Conference 2025 — Silver Award Winner (Oct 2025)
-- ICSE 2025 Sustainable Education — Participant (Sep 2025)
-- NexSymp 2025 — Reviewer, Science & Technology (Sep 2025)
-- 3rd International Article Writing Competition — Co-author of 2 articles (2025)
-- Workshop on Proposal Defense & Viva Voce — Attendee (Jul 2025)
-
-If someone wants to contact Valentine, direct them to email kirimivalentine@gmail.com or use the contact form on the website. Keep responses concise (3-5 sentences max unless more detail is specifically requested). Don't make up any information not listed above.`;
-
     const history = [];
 
     async function fetchAI(userMsg) {
       addTyping();
       history.push({ role: 'user', content: userMsg });
       try {
-        const res = await fetch('https://api.anthropic.com/v1/messages', {
+        const res = await fetch('/.netlify/functions/chat', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 1000,
-            system: SYSTEM,
-            messages: history
-          })
+          body: JSON.stringify({ messages: history })
         });
         const data = await res.json();
-        const reply = data.content?.[0]?.text || "I'm sorry, I couldn't retrieve a response. Please try again or email Valentine directly.";
+        const reply = data.reply || "I'm sorry, I couldn't retrieve a response. Please try again or email Valentine directly.";
         history.push({ role: 'assistant', content: reply });
         removeTyping();
         addMsg(reply.replace(/\n/g, '<br>'), 'bot');
