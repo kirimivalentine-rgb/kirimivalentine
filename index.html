@@ -4,360 +4,131 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kirimi Valentine | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --primary: #0070f3;
-      --dark: #0a0a0a;
-      --card: #111;
-      --text: #ccc;
+      --primary: #c8a96e;
+      --primary-dark: #a8893e;
+      --dark: #080c10;
+      --card: #0e1318;
+      --border: #1e2730;
+      --text: #8a9ab0;
+      --white: #e8edf2;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--dark);
-      color: #fff;
-      scroll-behavior: smooth;
+      color: var(--white);
+      overflow-x: hidden;
     }
 
-    /* NAV */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(200,169,110,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(200,169,110,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
     nav {
-      position: fixed; top: 0; width: 100%;
-      background: rgba(10,10,10,0.95);
-      display: flex; justify-content: space-between;
-      align-items: center; padding: 16px 40px;
-      z-index: 100; border-bottom: 1px solid #222;
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 60px;
+      background: rgba(8,12,16,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
     }
-    nav .logo { font-weight: bold; font-size: 1.2rem; color: var(--primary); }
-    nav ul { list-style: none; display: flex; gap: 24px; }
-    nav ul a { color: #aaa; text-decoration: none; font-size: 0.95rem; }
-    nav ul a:hover { color: #fff; }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--primary);
+      letter-spacing: 1px;
+    }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul a {
+      color: var(--text); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    nav ul a:hover { color: var(--primary); }
 
-    /* HERO */
     header {
       min-height: 100vh;
       display: flex; flex-direction: column;
       justify-content: center; align-items: center;
-      text-align: center; padding: 100px 20px 60px;
+      text-align: center;
+      padding: 120px 20px 60px;
+      position: relative; z-index: 1;
     }
-    header .badge {
-      background: #1a1a1a; border: 1px solid #333;
-      padding: 6px 16px; border-radius: 20px;
-      font-size: 0.85rem; color: var(--primary); margin-bottom: 20px;
+
+    .avatar-wrap {
+      position: relative;
+      width: 160px; height: 160px;
+      margin-bottom: 32px;
     }
-    header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 12px; }
+    .avatar-wrap::before {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), transparent, var(--primary-dark));
+      animation: spin 8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .avatar {
+      position: relative; z-index: 1;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 4px solid var(--dark);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .avatar-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; color: var(--primary);
+      font-weight: 800;
+    }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.3);
+      padding: 7px 18px; border-radius: 30px;
+      font-size: 0.8rem; color: var(--primary);
+      letter-spacing: 1px; margin-bottom: 20px;
+    }
+    .badge::before { content: '●'; font-size: 0.6rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 16px;
+    }
     header h1 span { color: var(--primary); }
-    header p.tagline {
-      font-size: 1.1rem; color: var(--text);
-      max-width: 600px; line-height: 1.7; margin-bottom: 32px;
+
+    .tagline {
+      font-size: 1rem; color: var(--text);
+      max-width: 560px; line-height: 1.8;
+      margin-bottom: 40px;
     }
+
     .btn-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+
     .btn {
-      padding: 12px 28px; border-radius: 8px;
-      font-weight: 600; text-decoration: none; font-size: 0.95rem;
+      padding: 13px 30px; border-radius: 6px;
+      font-weight: 600; text-decoration: none;
+      font-size: 0.88rem; letter-spacing: 0.5px;
+      transition: all 0.3s; cursor: pointer; border: none;
+      font-family: 'DM Sans', sans-serif;
     }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-outline { border: 1px solid #444; color: #fff; }
-    .btn:hover { opacity: 0.85; }
-
-    /* SECTIONS */
-    section { max-width: 900px; margin: 0 auto; padding: 80px 20px; }
-    h2 {
-      font-size: 2rem; margin-bottom: 8px;
-      border-left: 4px solid var(--primary); padding-left: 14px;
-    }
-    .section-sub { color: var(--text); margin-bottom: 36px; font-size: 0.95rem; }
-
-    /* ABOUT */
-    .about-text { color: var(--text); line-height: 1.9; font-size: 1rem; }
-
-    /* EXPERIENCE */
-    .timeline { display: flex; flex-direction: column; gap: 20px; }
-    .card {
-      background: var(--card); border: 1px solid #222;
-      border-radius: 12px; padding: 24px;
-    }
-    .card h3 { font-size: 1.05rem; margin-bottom: 4px; }
-    .card .meta { color: var(--primary); font-size: 0.85rem; margin-bottom: 10px; }
-    .card ul { color: var(--text); padding-left: 18px; font-size: 0.9rem; line-height: 1.8; }
-
-    /* EDUCATION */
-    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .edu-card {
-      background: var(--card); border: 1px solid #222;
-      border-radius: 12px; padding: 24px;
-    }
-    .edu-card .degree { font-weight: 700; margin-bottom: 6px; }
-    .edu-card .school { color: var(--primary); font-size: 0.9rem; }
-    .edu-card .year { color: #666; font-size: 0.85rem; margin-top: 6px; }
-
-    /* SKILLS */
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-    .skill {
-      background: #1a1a1a; border: 1px solid #2a2a2a;
-      padding: 8px 18px; border-radius: 20px; font-size: 0.9rem; color: var(--text);
-    }
-
-    /* PUBLICATIONS */
-    .pub-list { display: flex; flex-direction: column; gap: 14px; }
-    .pub {
-      background: var(--card); border: 1px solid #222;
-      border-radius: 10px; padding: 18px;
-    }
-    .pub p { color: var(--text); font-size: 0.88rem; line-height: 1.7; }
-    .pub a { color: var(--primary); font-size: 0.85rem; word-break: break-all; }
-
-    /* ACHIEVEMENTS */
-    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .ach {
-      background: var(--card); border: 1px solid #222;
-      border-radius: 10px; padding: 16px;
-    }
-    .ach h4 { font-size: 0.9rem; margin-bottom: 6px; }
-    .ach span { color: var(--primary); font-size: 0.8rem; }
-
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .contact-item {
-      background: var(--card); border: 1px solid #222;
-      border-radius: 10px; padding: 20px;
-    }
-    .contact-item label { color: #666; font-size: 0.8rem; display: block; margin-bottom: 6px; }
-    .contact-item a, .contact-item p { color: #fff; font-size: 0.95rem; text-decoration: none; }
-    .contact-item a:hover { color: var(--primary); }
-
-    /* FOOTER */
-    footer { text-align: center; padding: 40px; color: #444; font-size: 0.85rem; border-top: 1px solid #1a1a1a; }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      .edu-grid, .ach-grid, .contact-grid { grid-template-columns: 1fr; }
-      nav ul { gap: 14px; }
-      nav { padding: 14px 20px; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="logo">KV.</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#publications">Research</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <header>
-    <div class="badge">📍 Nairobi, Kenya · Open to Opportunities</div>
-    <h1>Kirimi <span>Valentine</span></h1>
-    <p class="tagline">
-      Instructional Design & Learning Technology Specialist · Educator in Mathematics & Chemistry ·
-      Researcher with 8 international publications
-    </p>
-    <div class="btn-group">
-      <a href="#contact" class="btn btn-primary">Get in Touch</a>
-      <a href="https://www.linkedin.com/in/valentine-kirimi-851602280" target="_blank" class="btn btn-outline">LinkedIn →</a>
-    </div>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p class="section-sub">Educator · Researcher · Technologist</p>
-    <p class="about-text">
-      A dedicated and self-motivated educator specializing in Learning, Design and Technology; Mathematics and Chemistry,
-      with strong experience in IGCSE and CBE curricula. Holds a Master's in Learning, Design, and Technology from
-      INTI International University, Malaysia, with expertise in instructional design, digital learning, and technology
-      integration. Actively engaged in research and academic writing, with international conference participation and
-      8 peer-reviewed publications. Passionate about fostering critical thinking, innovation, and developing globally
-      competent learners through effective and modern teaching approaches.
-    </p>
-  </section>
-
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <h2>Work Experience</h2>
-    <p class="section-sub">4+ years across international schools and institutions</p>
-    <div class="timeline">
-
-      <div class="card">
-        <h3>Mathematics Teacher</h3>
-        <div class="meta">Aug 2024 – Sep 2025 · Al-Ahagaaf International Schools, Mukalla · IGCSE Cambridge Curriculum</div>
-        <ul>
-          <li>Lesson planning and instruction</li>
-          <li>Student assessment and individualized approach</li>
-          <li>Educational material creation and classroom management</li>
-          <li>Collaboration with colleagues and parents</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Mathematics & Chemistry Teacher</h3>
-        <div class="meta">Aug 2022 – May 2024 · Faith Sultan Mohamed School, Boorama</div>
-        <ul>
-          <li>Lesson planning and student assessment</li>
-          <li>Individualized teaching and educational material creation</li>
-          <li>Classroom management and parent collaboration</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>Mathematics & Chemistry Teacher</h3>
-        <div class="meta">Apr 2022 – Aug 2022 · Highridge Girls Secondary School, Nairobi, Kenya</div>
-        <ul>
-          <li>Lesson planning, student assessment, individualized approach</li>
-          <li>Educational material creation and classroom management</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>VR Attendant & Co-Technician</h3>
-        <div class="meta">Stedmak Gardens, Karen Rd, Nairobi</div>
-        <ul>
-          <li>Team management, customer service, training and development</li>
-          <li>Safety and maintenance, sales and marketing</li>
-          <li>Leadership, communication, and upselling</li>
-        </ul>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <h2>Education</h2>
-    <p class="section-sub">Internationally trained educator and researcher</p>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <div class="degree">Master of Education in Learning, Design & Technology</div>
-        <div class="school">INTI International University, Nilai, Malaysia</div>
-        <div class="year">May 2024 – April 2026 · By Research</div>
-      </div>
-      <div class="edu-card">
-        <div class="degree">Bachelor of Education Science</div>
-        <div class="school">The Catholic University of Eastern Africa</div>
-        <div class="year">2019 – 2023 · Mathematics & Chemistry</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills & Expertise</h2>
-    <p class="section-sub">A blend of education, technology and research competencies</p>
-    <div class="skills-grid">
-      <span class="skill">Instructional Design</span>
-      <span class="skill">Curriculum Development</span>
-      <span class="skill">Technology Integration</span>
-      <span class="skill">Digital Learning</span>
-      <span class="skill">Research & Academic Writing</span>
-      <span class="skill">Evaluation & Assessment</span>
-      <span class="skill">Content Creation</span>
-      <span class="skill">Teaching (Maths & Chemistry)</span>
-      <span class="skill">IGCSE & CBE Curricula</span>
-      <span class="skill">Customer Service</span>
-      <span class="skill">Marketing</span>
-      <span class="skill">English & Swahili</span>
-    </div>
-  </section>
-
-  <!-- PUBLICATIONS -->
-  <section id="publications">
-    <h2>Research & Publications</h2>
-    <p class="section-sub">8 peer-reviewed international publications</p>
-    <div class="pub-list">
-
-      <div class="pub">
-        <p>Muriira, V., et al. (2025). Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach to Reducing Educational Inequalities. <em>Educational Process: International Journal</em>, 18.</p>
-        <a href="http://doi.org/10.22521/edupij.2025.18.428" target="_blank">doi.org/10.22521/edupij.2025.18.428</a>
-      </div>
-
-      <div class="pub">
-        <p>Muriira, V., & Nallisamy, V. (2025). Generative AI and Educational Assessment: A Bibliometric Mapping. In <em>Innovative Educational Assessment with Generative AI</em> (pp. 51–72). Springer Nature Switzerland.</p>
-        <a href="https://doi.org/10.1007/978-3-032-05306-0_3" target="_blank">doi.org/10.1007/978-3-032-05306-0_3</a>
-      </div>
-
-      <div class="pub">
-        <p>Muriira, V., et al. (2025). Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis.</p>
-        <a href="https://doi.org/10.21203/rs.3.rs-8161995/v1" target="_blank">doi.org/10.21203/rs.3.rs-8161995/v1</a>
-      </div>
-
-      <div class="pub">
-        <p>Muriira, V. K., et al. (2025). Trends and emerging Research Impact of AI in Climate Change Monitoring using Geospatial Data. <em>IEEE EarthSense 2025</em>.</p>
-        <a href="https://doi.org/10.1109/EarthSense66084.2025.11297307" target="_blank">doi.org/10.1109/EarthSense66084.2025.11297307</a>
-      </div>
-
-      <div class="pub">
-        <p>Li, D., Xue, G., Miao, S., Qiao, X., & Muriira, V. K. (2026). Artificial intelligence and sustainable entrepreneurship nexus. <em>Entrepreneurship and Sustainability Issues</em>, 13(3), 159–176.</p>
-        <a href="http://doi.org/10.9770/n3433346968" target="_blank">doi.org/10.9770/n3433346968</a>
-      </div>
-
-      <div class="pub">
-        <p>Muriira, V. K., et al. (2026). Exploring AI's Role in Educational Data Mining: A Bibliometric Review. <em>International Journal on Robotics, Automation and Sciences</em>, 8(1), 20–31.</p>
-        <a href="https://doi.org/10.33093/ijoras.2026.8.1.3" target="_blank">doi.org/10.33093/ijoras.2026.8.1.3</a>
-      </div>
-
-      <div class="pub">
-        <p>Muriira, V. K., et al. (2026). The Impact of AI on Educational Content Creation: A Bibliometric Review. <em>International Journal on Robotics, Automation and Sciences</em>, 8(1), 32–43.</p>
-        <a href="https://doi.org/10.33093/ijoras.2026.8.1.4" target="_blank">doi.org/10.33093/ijoras.2026.8.1.4</a>
-      </div>
-
-      <div class="pub">
-        <p>Kirimi Muriira, V., et al. (2026). AI-Augmented Mobile and Data-Driven Decision Making in Business. <em>International Journal of Interactive Mobile Technologies</em>, 20(07), 123–137.</p>
-        <a href="https://doi.org/10.3991/ijim.v20i07.61107" target="_blank">doi.org/10.3991/ijim.v20i07.61107</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ACHIEVEMENTS -->
-  <section id="achievements">
-    <h2>Achievements & Certificates</h2>
-    <p class="section-sub">Conferences, awards and workshops</p>
-    <div class="ach-grid">
-      <div class="ach"><h4>IEEE EARTHSENSE 2025</h4><span>Research Paper Presenter · Sep 2025</span></div>
-      <div class="ach"><h4>International Digital Education Conference 2025</h4><span>🥈 Silver Award Winner · Oct 2025</span></div>
-      <div class="ach"><h4>ICSE 2025 – International Conference on Sustainable Education</h4><span>Participant · Sep 2025</span></div>
-      <div class="ach"><h4>NexSymp 2025</h4><span>Reviewer – Science & Technology · Sep 2025</span></div>
-      <div class="ach"><h4>3rd International Article Writing Competition 2025</h4><span>Co-author (2 articles)</span></div>
-      <div class="ach"><h4>Workshop: Proposal Defense & Viva Voce</h4><span>Attendee · Jul 2025</span></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p class="section-sub">Let's connect and collaborate</p>
-    <div class="contact-grid">
-      <div class="contact-item">
-        <label>📧 Email</label>
-        <a href="mailto:kirimivalentine@gmail.com">kirimivalentine@gmail.com</a>
-      </div>
-      <div class="contact-item">
-        <label>📞 Phone</label>
-        <p>+254 746 414 833</p>
-      </div>
-      <div class="contact-item">
-        <label>🔗 LinkedIn</label>
-        <a href="https://www.linkedin.com/in/valentine-kirimi-851602280" target="_blank">valentine-kirimi-851602280</a>
-      </div>
-      <div class="contact-item">
-        <label>📍 Location</label>
-        <p>P.O Box 15055-00509, Nairobi, Kenya</p>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Kirimi Valentine · Built with ❤️ · Hosted free on GitHub Pages</p>
-  </footer>
-
-</body>
-</html>
+    .btn-primary { background: var(--primary); color: #080c10; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+    .btn-outline { border: 1px solid var(--border); color: var(--white); background: transparent; }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primar
