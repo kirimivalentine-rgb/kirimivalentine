@@ -131,4 +131,438 @@
     .btn-primary { background: var(--primary); color: #080c10; }
     .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
     .btn-outline { border: 1px solid var(--border); color: var(--white); background: transparent; }
-    .btn-outline:hover { border-color: var(--primary); color: var(--primar
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+    .btn-cv {
+      background: transparent; border: 1px solid var(--primary);
+      color: var(--primary); display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-cv:hover { background: var(--primary); color: #080c10; transform: translateY(-2px); }
+    .btn-cv svg { width: 16px; height: 16px; }
+
+    section {
+      max-width: 900px; margin: 0 auto;
+      padding: 90px 20px;
+      position: relative; z-index: 1;
+    }
+
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 10px;
+    }
+    h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 8px; }
+    .divider { width: 40px; height: 2px; background: var(--primary); margin: 16px 0 36px; }
+
+    .about-text { color: var(--text); line-height: 1.9; font-size: 1rem; }
+
+    .timeline { display: flex; flex-direction: column; gap: 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 26px; transition: border-color 0.3s;
+    }
+    .card:hover { border-color: rgba(200,169,110,0.4); }
+    .card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
+    .card .meta { color: var(--primary); font-size: 0.82rem; margin-bottom: 14px; }
+    .card ul { color: var(--text); padding-left: 18px; font-size: 0.88rem; line-height: 1.9; }
+
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .edu-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 26px; transition: border-color 0.3s;
+    }
+    .edu-card:hover { border-color: rgba(200,169,110,0.4); }
+    .edu-card .degree { font-weight: 600; margin-bottom: 8px; font-size: 0.97rem; }
+    .edu-card .school { color: var(--primary); font-size: 0.85rem; }
+    .edu-card .year { color: var(--text); font-size: 0.82rem; margin-top: 8px; }
+
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 8px 18px; border-radius: 30px;
+      font-size: 0.85rem; color: var(--text); transition: all 0.3s;
+    }
+    .skill:hover { border-color: var(--primary); color: var(--primary); }
+
+    .pub-list { display: flex; flex-direction: column; gap: 12px; }
+    .pub {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px; transition: border-color 0.3s;
+    }
+    .pub:hover { border-color: rgba(200,169,110,0.4); }
+    .pub-num { font-family: 'Playfair Display', serif; color: var(--primary); font-size: 1.1rem; margin-bottom: 6px; }
+    .pub p { color: var(--text); font-size: 0.86rem; line-height: 1.7; margin-bottom: 8px; }
+    .pub a { color: var(--primary); font-size: 0.82rem; word-break: break-all; }
+
+    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .ach {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px; transition: border-color 0.3s;
+    }
+    .ach:hover { border-color: rgba(200,169,110,0.4); }
+    .ach h4 { font-size: 0.88rem; margin-bottom: 6px; font-weight: 500; }
+    .ach span { color: var(--primary); font-size: 0.78rem; }
+
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .contact-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px;
+    }
+    .contact-item label {
+      color: var(--primary); font-size: 0.75rem;
+      text-transform: uppercase; letter-spacing: 1px;
+      display: block; margin-bottom: 6px;
+    }
+    .contact-item a, .contact-item p { color: var(--white); font-size: 0.9rem; text-decoration: none; }
+    .contact-item a:hover { color: var(--primary); }
+
+    .contact-form {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px;
+    }
+    .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block; font-size: 0.8rem; color: var(--text);
+      margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 12px 16px; color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
+      transition: border-color 0.3s; outline: none; resize: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); }
+    .form-group textarea { height: 130px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .btn-send {
+      width: 100%; padding: 14px; background: var(--primary); color: #080c10;
+      border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-send:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+    .form-note { font-size: 0.78rem; color: var(--text); text-align: center; margin-top: 12px; }
+    .form-note a { color: var(--primary); text-decoration: none; }
+    .form-success { display: none; text-align: center; padding: 30px; color: var(--primary); font-size: 1rem; }
+    .form-success .check { font-size: 2.5rem; margin-bottom: 10px; }
+
+    footer {
+      text-align: center; padding: 40px; color: var(--text);
+      font-size: 0.82rem; border-top: 1px solid var(--border);
+      position: relative; z-index: 1;
+    }
+    footer span { color: var(--primary); }
+
+    @media (max-width: 700px) {
+      nav { padding: 16px 20px; }
+      nav ul { gap: 16px; }
+      nav ul a { font-size: 0.75rem; }
+      .edu-grid, .ach-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo">KV.</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Research</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <!-- TO ADD YOUR REAL PHOTO:
+             1. Upload photo to GitHub repo named "photo.jpg"
+             2. Delete the line below and replace with:
+             <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+        <div class="avatar-initials">KV</div>
+      </div>
+    </div>
+
+    <div class="badge">📍 Nairobi, Kenya &nbsp;·&nbsp; Open to Opportunities</div>
+    <h1>Kirimi <span>Valentine</span></h1>
+    <p class="tagline">
+      Instructional Design & Learning Technology Specialist · Educator in Mathematics & Chemistry ·
+      8 International Peer-Reviewed Publications
+    </p>
+
+    <div class="btn-group">
+      <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      <a href="Valentine_May_CV.pdf" download="Kirimi_Valentine_CV.pdf" class="btn btn-cv">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Download CV
+      </a>
+      <a href="https://www.linkedin.com/in/valentine-kirimi-851602280" target="_blank" class="btn btn-outline">LinkedIn →</a>
+    </div>
+  </header>
+
+  <section id="about">
+    <p class="section-label">01 — About</p>
+    <h2>Who I Am</h2>
+    <div class="divider"></div>
+    <p class="about-text">
+      A dedicated and self-motivated educator specializing in Learning, Design and Technology; Mathematics and Chemistry,
+      with strong experience in IGCSE and CBE curricula. Currently pursuing a Master's in Learning, Design, and Technology
+      at INTI International University, Malaysia, with expertise in instructional design, digital learning, and technology
+      integration. Actively engaged in research and academic writing, with international conference participation and
+      8 peer-reviewed publications. Passionate about fostering critical thinking, innovation, and developing globally
+      competent learners through effective and modern teaching approaches.
+    </p>
+  </section>
+
+  <section id="experience">
+    <p class="section-label">02 — Experience</p>
+    <h2>Work History</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+      <div class="card">
+        <h3>Mathematics Teacher</h3>
+        <div class="meta">Aug 2024 – Sep 2025 · Al-Ahagaaf International Schools, Mukalla · IGCSE Cambridge</div>
+        <ul>
+          <li>Lesson planning and instruction across IGCSE curriculum</li>
+          <li>Student assessment and individualized learning approaches</li>
+          <li>Educational material creation and classroom management</li>
+          <li>Collaboration with colleagues and parents</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Mathematics & Chemistry Teacher</h3>
+        <div class="meta">Aug 2022 – May 2024 · Faith Sultan Mohamed School, Boorama</div>
+        <ul>
+          <li>Lesson planning, student assessment, individualized teaching</li>
+          <li>Educational material creation and classroom management</li>
+          <li>Active parent-teacher collaboration</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Mathematics & Chemistry Teacher</h3>
+        <div class="meta">Apr 2022 – Aug 2022 · Highridge Girls Secondary School, Nairobi</div>
+        <ul>
+          <li>Lesson planning, assessment, individualized approach</li>
+          <li>Educational material creation and classroom management</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>VR Attendant & Co-Technician</h3>
+        <div class="meta">Stedmak Gardens, Karen Rd, Nairobi</div>
+        <ul>
+          <li>Team management, customer service, training and development</li>
+          <li>Safety, maintenance, sales and marketing</li>
+          <li>Leadership, communication, and upselling</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <p class="section-label">03 — Education</p>
+    <h2>Academic Background</h2>
+    <div class="divider"></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="degree">Master of Education in Learning, Design & Technology</div>
+        <div class="school">INTI International University, Nilai, Malaysia</div>
+        <div class="year">May 2024 – April 2026 · By Research</div>
+      </div>
+      <div class="edu-card">
+        <div class="degree">Bachelor of Education Science</div>
+        <div class="school">The Catholic University of Eastern Africa</div>
+        <div class="year">2019 – 2023 · Mathematics & Chemistry</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="section-label">04 — Skills</p>
+    <h2>Expertise</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <span class="skill">Instructional Design</span>
+      <span class="skill">Curriculum Development</span>
+      <span class="skill">Technology Integration</span>
+      <span class="skill">Digital Learning</span>
+      <span class="skill">Research & Academic Writing</span>
+      <span class="skill">Evaluation & Assessment</span>
+      <span class="skill">Content Creation</span>
+      <span class="skill">Teaching — Maths & Chemistry</span>
+      <span class="skill">IGCSE & CBE Curricula</span>
+      <span class="skill">Customer Service</span>
+      <span class="skill">Marketing</span>
+      <span class="skill">English & Swahili</span>
+    </div>
+  </section>
+
+  <section id="publications">
+    <p class="section-label">05 — Research</p>
+    <h2>Publications</h2>
+    <div class="divider"></div>
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-num">01</div>
+        <p>Muriira, V., et al. (2025). Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach. <em>Educational Process: International Journal</em>, 18.</p>
+        <a href="http://doi.org/10.22521/edupij.2025.18.428" target="_blank">doi.org/10.22521/edupij.2025.18.428 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">02</div>
+        <p>Muriira, V., & Nallisamy, V. (2025). Generative AI and Educational Assessment: A Bibliometric Mapping. In <em>Innovative Educational Assessment with Generative AI</em>. Springer Nature Switzerland.</p>
+        <a href="https://doi.org/10.1007/978-3-032-05306-0_3" target="_blank">doi.org/10.1007/978-3-032-05306-0_3 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">03</div>
+        <p>Muriira, V., et al. (2025). Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis.</p>
+        <a href="https://doi.org/10.21203/rs.3.rs-8161995/v1" target="_blank">doi.org/10.21203/rs.3.rs-8161995/v1 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">04</div>
+        <p>Muriira, V. K., et al. (2025). Trends and Emerging Research Impact of AI in Climate Change Monitoring. <em>IEEE EarthSense 2025</em>.</p>
+        <a href="https://doi.org/10.1109/EarthSense66084.2025.11297307" target="_blank">doi.org/10.1109/EarthSense66084.2025.11297307 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">05</div>
+        <p>Li, D., Xue, G., Miao, S., Qiao, X., & Muriira, V. K. (2026). Artificial intelligence and sustainable entrepreneurship nexus. <em>Entrepreneurship and Sustainability Issues</em>, 13(3).</p>
+        <a href="http://doi.org/10.9770/n3433346968" target="_blank">doi.org/10.9770/n3433346968 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">06</div>
+        <p>Muriira, V. K., et al. (2026). Exploring AI's Role in Educational Data Mining. <em>International Journal on Robotics, Automation and Sciences</em>, 8(1), 20–31.</p>
+        <a href="https://doi.org/10.33093/ijoras.2026.8.1.3" target="_blank">doi.org/10.33093/ijoras.2026.8.1.3 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">07</div>
+        <p>Muriira, V. K., et al. (2026). The Impact of AI on Educational Content Creation. <em>International Journal on Robotics, Automation and Sciences</em>, 8(1), 32–43.</p>
+        <a href="https://doi.org/10.33093/ijoras.2026.8.1.4" target="_blank">doi.org/10.33093/ijoras.2026.8.1.4 ↗</a>
+      </div>
+      <div class="pub">
+        <div class="pub-num">08</div>
+        <p>Kirimi Muriira, V., et al. (2026). AI-Augmented Mobile and Data-Driven Decision Making in Business. <em>International Journal of Interactive Mobile Technologies</em>, 20(07), 123–137.</p>
+        <a href="https://doi.org/10.3991/ijim.v20i07.61107" target="_blank">doi.org/10.3991/ijim.v20i07.61107 ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <p class="section-label">06 — Awards</p>
+    <h2>Achievements</h2>
+    <div class="divider"></div>
+    <div class="ach-grid">
+      <div class="ach"><h4>IEEE EARTHSENSE 2025</h4><span>Research Paper Presenter · Sep 2025</span></div>
+      <div class="ach"><h4>International Digital Education Conference 2025</h4><span>🥈 Silver Award Winner · Oct 2025</span></div>
+      <div class="ach"><h4>ICSE 2025 – Sustainable Education</h4><span>Participant · Sep 2025</span></div>
+      <div class="ach"><h4>NexSymp 2025</h4><span>Reviewer – Science & Technology · Sep 2025</span></div>
+      <div class="ach"><h4>3rd International Article Writing Competition</h4><span>Co-author (2 articles) · 2025</span></div>
+      <div class="ach"><h4>Workshop: Proposal Defense & Viva Voce</h4><span>Attendee · Jul 2025</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="section-label">07 — Contact</p>
+    <h2>Let's Connect</h2>
+    <div class="divider"></div>
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-item">
+          <label>📧 Email</label>
+          <a href="mailto:kirimivalentine@gmail.com">kirimivalentine@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <label>📞 Phone</label>
+          <p>+254 746 414 833</p>
+        </div>
+        <div class="contact-item">
+          <label>🔗 LinkedIn</label>
+          <a href="https://www.linkedin.com/in/valentine-kirimi-851602280" target="_blank">valentine-kirimi-851602280</a>
+        </div>
+        <div class="contact-item">
+          <label>📍 Location</label>
+          <p>P.O Box 15055-00509<br>Nairobi, Kenya</p>
+        </div>
+        <a href="Valentine_May_CV.pdf" download="Kirimi_Valentine_CV.pdf" class="btn btn-cv" style="justify-content:center;padding:14px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download My CV
+        </a>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send a Message</h3>
+        <form id="contactForm" action="https://formspree.io/f/xpqnaeqj" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" name="first_name" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" name="last_name" placeholder="Doe" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="john@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <input type="text" name="subject" placeholder="Collaboration opportunity..." required>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell me about your project or opportunity..." required></textarea>
+          </div>
+          <button type="submit" class="btn-send">Send Message →</button>
+          <p class="form-note">
+            Powered by <a href="https://formspree.io" target="_blank">Formspree</a> — free & no spam
+          </p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check">✅</div>
+          <p>Message sent! I'll get back to you soon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 <span>Kirimi Valentine</span> · Built with ❤️ · Hosted free on GitHub Pages</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('formSuccess');
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST', body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.style.display = 'none';
+          success.style.display = 'block';
+        }
+      } catch(err) {
+        alert('Message sent!');
+      }
+    });
+  </script>
+
+</body>
+</html>
