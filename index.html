@@ -52,8 +52,6 @@
       padding: 120px 20px 60px;
       position: relative; z-index: 1;
     }
-
-    /* ── PHOTO AVATAR ── */
     .avatar-wrap {
       position: relative; width: 170px; height: 170px; margin-bottom: 32px;
     }
@@ -72,15 +70,11 @@
       overflow: hidden;
       display: flex; align-items: center; justify-content: center;
     }
-    .avatar img {
-      width: 100%; height: 100%; object-fit: cover;
-      display: block;
-    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .avatar-initials {
       font-family: 'Playfair Display', serif;
       font-size: 3rem; color: var(--primary); font-weight: 800;
     }
-
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.3);
@@ -186,7 +180,7 @@
 
     #ai-panel {
       position: fixed; bottom: 104px; right: 32px; z-index: 9998;
-      width: 380px; height: 540px;
+      width: 390px; height: 560px;
       background: #0d1117;
       border: 1px solid rgba(200,169,110,0.3);
       border-radius: 20px;
@@ -205,10 +199,11 @@
     }
 
     .ai-header {
-      padding: 18px 20px;
+      padding: 16px 20px;
       background: linear-gradient(135deg, rgba(200,169,110,0.12), rgba(200,169,110,0.04));
       border-bottom: 1px solid rgba(200,169,110,0.15);
       display: flex; align-items: center; gap: 12px;
+      flex-shrink: 0;
     }
     .ai-avatar {
       width: 40px; height: 40px; border-radius: 50%;
@@ -220,12 +215,38 @@
     }
     .ai-header-text h4 { font-size: 0.9rem; font-weight: 600; color: var(--white); }
     .ai-header-text p { font-size: 0.75rem; color: var(--primary); }
+    .ai-header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+    .ai-human-btn {
+      background: rgba(74,222,128,0.12);
+      border: 1px solid rgba(74,222,128,0.35);
+      color: #4ade80; font-size: 0.7rem; font-family: 'DM Sans', sans-serif;
+      padding: 5px 10px; border-radius: 20px; cursor: pointer;
+      white-space: nowrap; transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+    }
+    .ai-human-btn:hover { background: rgba(74,222,128,0.22); }
+    .ai-human-btn::before { content: '👤'; font-size: 0.65rem; }
     .ai-close {
-      margin-left: auto; background: none; border: none;
+      background: none; border: none;
       color: var(--text); cursor: pointer; font-size: 1.2rem;
-      transition: color 0.2s;
+      transition: color 0.2s; padding: 2px;
     }
     .ai-close:hover { color: var(--white); }
+
+    /* Tab bar */
+    .ai-tabs {
+      display: flex; border-bottom: 1px solid rgba(255,255,255,0.06);
+      flex-shrink: 0;
+    }
+    .ai-tab {
+      flex: 1; padding: 10px; font-size: 0.78rem; font-family: 'DM Sans', sans-serif;
+      background: none; border: none; color: var(--text); cursor: pointer;
+      border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.5px;
+    }
+    .ai-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    /* AI tab content */
+    .tab-content { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+    .tab-content.active { display: flex; }
 
     .ai-msgs {
       flex: 1; overflow-y: auto;
@@ -253,24 +274,54 @@
       color: #080c10; font-weight: 500;
       border-bottom-right-radius: 4px;
     }
+    .msg-link { color: var(--primary); text-decoration: underline; font-size: 0.82rem; }
+
+    /* Human chat tab */
+    .human-tab-inner {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 24px; text-align: center; gap: 14px;
+    }
+    .human-icon { font-size: 2.8rem; margin-bottom: 4px; }
+    .human-tab-inner h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--white); }
+    .human-tab-inner p { font-size: 0.84rem; color: var(--text); line-height: 1.7; max-width: 280px; }
+    .human-online { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #4ade80; }
+    .human-online::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; display: inline-block; }
+    .btn-start-chat {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #080c10; font-weight: 700; font-family: 'DM Sans', sans-serif;
+      padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 0.88rem; letter-spacing: 0.5px; transition: all 0.3s;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-start-chat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,169,110,0.3); }
+    .btn-email-alt {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      font-family: 'DM Sans', sans-serif; padding: 10px 24px; border-radius: 8px;
+      cursor: pointer; font-size: 0.82rem; transition: all 0.2s; text-decoration: none; display: inline-block;
+    }
+    .btn-email-alt:hover { border-color: var(--primary); color: var(--primary); }
+    .divider-or { font-size: 0.75rem; color: var(--text); }
 
     .ai-suggestions {
-      padding: 0 16px 12px;
+      padding: 0 16px 10px;
       display: flex; flex-wrap: wrap; gap: 6px;
+      flex-shrink: 0;
     }
     .ai-chip {
       background: rgba(200,169,110,0.08);
       border: 1px solid rgba(200,169,110,0.25);
-      color: var(--primary); font-size: 0.75rem;
-      padding: 5px 12px; border-radius: 20px;
-      cursor: pointer; transition: all 0.2s;
+      color: var(--primary); font-size: 0.73rem;
+      padding: 5px 11px; border-radius: 20px;
+      cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
     }
     .ai-chip:hover { background: rgba(200,169,110,0.18); }
 
     .ai-input-row {
-      padding: 12px 16px;
+      padding: 10px 14px;
       border-top: 1px solid rgba(255,255,255,0.06);
       display: flex; gap: 8px; align-items: flex-end;
+      flex-shrink: 0;
     }
     #ai-input {
       flex: 1; background: rgba(255,255,255,0.05);
@@ -596,8 +647,6 @@
   <!-- ═══════════════════════════════
        AI CHAT ASSISTANT
   ════════════════════════════════ -->
-
-  <!-- Floating toggle button -->
   <button id="ai-toggle" aria-label="Open AI assistant">
     <div class="ai-pulse"></div>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -605,41 +654,91 @@
     </svg>
   </button>
 
-  <!-- Chat panel -->
   <div id="ai-panel" role="dialog" aria-label="AI assistant chat">
     <div class="ai-header">
       <div class="ai-avatar">KV</div>
       <div class="ai-header-text">
-        <h4>Valentine's AI Assistant</h4>
-        <p>Ask me anything about Kirimi</p>
+        <h4>Valentine's Assistant</h4>
+        <p>AI-powered · Always available</p>
       </div>
-      <button class="ai-close" id="ai-close" aria-label="Close chat">✕</button>
+      <div class="ai-header-actions">
+        <button class="ai-human-btn" id="switch-to-human">Talk to Valentine</button>
+        <button class="ai-close" id="ai-close" aria-label="Close chat">✕</button>
+      </div>
     </div>
 
-    <div class="ai-msgs" id="ai-msgs">
-      <div class="msg bot">
-        <div class="msg-bubble">
-          Hi there! 👋 I'm Valentine's AI assistant. I can tell you about his research, teaching experience, publications, or how to get in touch. What would you like to know?
+    <!-- Tab bar -->
+    <div class="ai-tabs">
+      <button class="ai-tab active" data-tab="ai-tab">🤖 AI Assistant</button>
+      <button class="ai-tab" data-tab="human-tab">👤 Chat with Valentine</button>
+    </div>
+
+    <!-- AI Tab -->
+    <div class="tab-content active" id="ai-tab">
+      <div class="ai-msgs" id="ai-msgs">
+        <div class="msg bot">
+          <div class="msg-bubble">
+            Hi there! 👋 I'm Valentine's AI assistant. I know everything about his research, teaching background, publications, and more. What would you like to know?
+          </div>
         </div>
       </div>
+
+      <div class="ai-suggestions" id="ai-chips">
+        <button class="ai-chip" data-q="What research does Valentine work on?">Research focus</button>
+        <button class="ai-chip" data-q="Tell me about his teaching experience">Teaching</button>
+        <button class="ai-chip" data-q="List his publications">Publications</button>
+        <button class="ai-chip" data-q="What are his qualifications?">Qualifications</button>
+        <button class="ai-chip" data-q="How can I collaborate with Valentine?">Collaborate</button>
+        <button class="ai-chip" data-q="What awards has he won?">Awards</button>
+      </div>
+
+      <div class="ai-input-row">
+        <textarea id="ai-input" placeholder="Ask about Valentine…" rows="1"></textarea>
+        <button id="ai-send" aria-label="Send">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <div class="ai-suggestions" id="ai-chips">
-      <button class="ai-chip" data-q="What research does Valentine work on?">Research focus</button>
-      <button class="ai-chip" data-q="Tell me about his teaching experience">Teaching experience</button>
-      <button class="ai-chip" data-q="What are his most notable publications?">Publications</button>
-      <button class="ai-chip" data-q="How can I collaborate with Valentine?">Collaborate</button>
-    </div>
-
-    <div class="ai-input-row">
-      <textarea id="ai-input" placeholder="Ask about Valentine…" rows="1"></textarea>
-      <button id="ai-send" aria-label="Send">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-        </svg>
-      </button>
+    <!-- Human Chat Tab -->
+    <div class="tab-content" id="human-tab">
+      <div class="human-tab-inner">
+        <div class="human-icon">💬</div>
+        <h3>Chat Directly with Valentine</h3>
+        <p>Valentine is available for real-time conversations about research collaborations, teaching opportunities, or any professional inquiries.</p>
+        <div class="human-online">Usually responds within a few hours</div>
+        <!-- ── OPTION 1: Tawk.to live chat (recommended) ── -->
+        <!-- Replace YOUR_TAWK_PROPERTY_ID with your Tawk.to property ID after signing up at tawk.to -->
+        <a class="btn-start-chat" href="#" id="open-tawk">Start Live Chat →</a>
+        <span class="divider-or">— or reach out directly —</span>
+        <a class="btn-email-alt" href="mailto:kirimivalentine@gmail.com">📧 kirimivalentine@gmail.com</a>
+        <a class="btn-email-alt" href="https://www.linkedin.com/in/valentine-kirimi-851602280" target="_blank">🔗 Connect on LinkedIn</a>
+      </div>
     </div>
   </div>
+
+  <!-- ═══════════════════════════════
+       TAWK.TO LIVE CHAT WIDGET
+       Steps to activate:
+       1. Go to https://www.tawk.to and create a FREE account
+       2. Copy your Property ID and Widget ID from the dashboard
+       3. Replace REPLACE_WITH_YOUR_PROPERTY_ID and REPLACE_WITH_YOUR_WIDGET_ID below
+  ════════════════════════════════ -->
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function(){
+      var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+      s1.async = true;
+      s1.src = 'https://embed.tawk.to/6a0af484c744531c43732cd7/1jotcmabk';
+      s1.charset = 'UTF-8';
+      s1.setAttribute('crossorigin', '*');
+      s0.parentNode.insertBefore(s1, s0);
+    })();
+  </script>
+  <!--End of Tawk.to Script-->
 
   <script>
     /* ── contact form ── */
@@ -654,19 +753,45 @@
       } catch(err) { alert('Message sent!'); }
     });
 
-    /* ── AI chat ── */
-    const toggle = document.getElementById('ai-toggle');
-    const panel  = document.getElementById('ai-panel');
+    /* ── Panel open/close ── */
+    const toggle   = document.getElementById('ai-toggle');
+    const panel    = document.getElementById('ai-panel');
     const closeBtn = document.getElementById('ai-close');
-    const msgs   = document.getElementById('ai-msgs');
-    const input  = document.getElementById('ai-input');
-    const send   = document.getElementById('ai-send');
-    const chips  = document.getElementById('ai-chips');
 
     toggle.addEventListener('click', () => panel.classList.toggle('open'));
     closeBtn.addEventListener('click', () => panel.classList.remove('open'));
 
-    /* auto-grow textarea */
+    /* ── Tabs ── */
+    document.querySelectorAll('.ai-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.ai-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    /* Switch to human tab from header button */
+    document.getElementById('switch-to-human').addEventListener('click', () => {
+      document.querySelectorAll('.ai-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelector('[data-tab="human-tab"]').classList.add('active');
+      document.getElementById('human-tab').classList.add('active');
+      panel.classList.add('open');
+    });
+
+    /* Open Tawk.to widget */
+    document.getElementById('open-tawk').addEventListener('click', (e) => {
+      e.preventDefault();
+      if (typeof Tawk_API !== 'undefined' && Tawk_API.maximize) {
+        Tawk_API.maximize();
+      } else {
+        window.open('https://tawk.to/chat/6a0af484c744531c43732cd7/1jotcmabk', '_blank');
+      }
+    });
+
+    /* ── Auto-grow textarea ── */
+    const input = document.getElementById('ai-input');
     input.addEventListener('input', () => {
       input.style.height = 'auto';
       input.style.height = Math.min(input.scrollHeight, 100) + 'px';
@@ -674,21 +799,25 @@
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
     });
-    send.addEventListener('click', sendMsg);
+    document.getElementById('ai-send').addEventListener('click', sendMsg);
 
-    chips.querySelectorAll('.ai-chip').forEach(chip => {
+    /* ── Chips ── */
+    document.querySelectorAll('.ai-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         const q = chip.dataset.q;
-        chips.style.display = 'none';
+        document.getElementById('ai-chips').style.display = 'none';
         addMsg(q, 'user');
-        fetchAI(q);
+        simulateReply(q);
       });
     });
 
-    function addMsg(text, role) {
+    /* ── Message helpers ── */
+    const msgs = document.getElementById('ai-msgs');
+
+    function addMsg(html, role) {
       const div = document.createElement('div');
       div.className = `msg ${role}`;
-      div.innerHTML = `<div class="msg-bubble">${text}</div>`;
+      div.innerHTML = `<div class="msg-bubble">${html}</div>`;
       msgs.appendChild(div);
       msgs.scrollTop = msgs.scrollHeight;
       return div;
@@ -696,8 +825,7 @@
 
     function addTyping() {
       const div = document.createElement('div');
-      div.className = 'msg bot';
-      div.id = 'typing';
+      div.className = 'msg bot'; div.id = 'typing';
       div.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
       msgs.appendChild(div);
       msgs.scrollTop = msgs.scrollHeight;
@@ -708,85 +836,206 @@
       if (t) t.remove();
     }
 
-    async function sendMsg() {
+    function sendMsg() {
       const q = input.value.trim();
       if (!q) return;
-      chips.style.display = 'none';
+      document.getElementById('ai-chips').style.display = 'none';
       addMsg(q, 'user');
       input.value = '';
       input.style.height = 'auto';
-      fetchAI(q);
+      simulateReply(q);
     }
 
-    const SYSTEM = `You are a friendly and knowledgeable AI assistant on the portfolio website of Kirimi Valentine Muriira. Your job is to help visitors learn about Valentine and his work. Be warm, concise, and helpful.
+    /* ════════════════════════════════════════════
+       SMART RULE-BASED AI — covers all profile info
+       Works 100% on GitHub Pages, no API key needed
+    ════════════════════════════════════════════ */
+    const kb = {
+      name:        "Kirimi Valentine Muriira",
+      location:    "Nairobi, Kenya",
+      email:       "kirimivalentine@gmail.com",
+      phone:       "+254 746 414 833",
+      linkedin:    "https://www.linkedin.com/in/valentine-kirimi-851602280",
+      summary:     "Valentine is a dedicated educator and researcher specialising in Learning, Design & Technology, Mathematics, and Chemistry. He has 8 international peer-reviewed publications and is completing a Master's by Research at INTI International University, Malaysia.",
+      education: [
+        { degree: "Master of Education in Learning, Design & Technology", school: "INTI International University, Nilai, Malaysia", period: "May 2024 – April 2026", type: "By Research" },
+        { degree: "Bachelor of Education Science (Mathematics & Chemistry)", school: "The Catholic University of Eastern Africa", period: "2019 – 2023" }
+      ],
+      experience: [
+        { role: "Mathematics Teacher", org: "Al-Ahagaaf International Schools, Mukalla", period: "Aug 2024 – Sep 2025", notes: "IGCSE Cambridge curriculum" },
+        { role: "Mathematics & Chemistry Teacher", org: "Faith Sultan Mohamed School, Boorama", period: "Aug 2022 – May 2024" },
+        { role: "Mathematics & Chemistry Teacher", org: "Highridge Girls Secondary School, Nairobi", period: "Apr 2022 – Aug 2022" },
+        { role: "VR Attendant & Co-Technician", org: "Stedmak Gardens, Karen Rd, Nairobi", notes: "Team management, customer service, marketing" }
+      ],
+      skills: ["Instructional Design", "Curriculum Development", "Technology Integration", "Digital Learning", "Research & Academic Writing", "Evaluation & Assessment", "Content Creation", "Teaching Maths & Chemistry", "IGCSE & CBE Curricula", "English & Swahili"],
+      publications: [
+        { n:1, title:"Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach", journal:"Educational Process: International Journal, 18", year:2025, doi:"http://doi.org/10.22521/edupij.2025.18.428" },
+        { n:2, title:"Generative AI and Educational Assessment: A Bibliometric Mapping", journal:"Springer Nature Switzerland (book chapter)", year:2025, doi:"https://doi.org/10.1007/978-3-032-05306-0_3" },
+        { n:3, title:"Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis", journal:"Preprint", year:2025, doi:"https://doi.org/10.21203/rs.3.rs-8161995/v1" },
+        { n:4, title:"Trends and Emerging Research Impact of AI in Climate Change Monitoring", journal:"IEEE EarthSense 2025", year:2025, doi:"https://doi.org/10.1109/EarthSense66084.2025.11297307" },
+        { n:5, title:"Artificial Intelligence and Sustainable Entrepreneurship Nexus", journal:"Entrepreneurship and Sustainability Issues, 13(3)", year:2026, doi:"http://doi.org/10.9770/n3433346968" },
+        { n:6, title:"Exploring AI's Role in Educational Data Mining", journal:"IJORAS, 8(1), 20–31", year:2026, doi:"https://doi.org/10.33093/ijoras.2026.8.1.3" },
+        { n:7, title:"The Impact of AI on Educational Content Creation", journal:"IJORAS, 8(1), 32–43", year:2026, doi:"https://doi.org/10.33093/ijoras.2026.8.1.4" },
+        { n:8, title:"AI-Augmented Mobile and Data-Driven Decision Making in Business", journal:"IJIM, 20(07), 123–137", year:2026, doi:"https://doi.org/10.3991/ijim.v20i07.61107" }
+      ],
+      awards: [
+        "IEEE EarthSense 2025 — Research Paper Presenter (Sep 2025)",
+        "International Digital Education Conference 2025 — 🥈 Silver Award Winner (Oct 2025)",
+        "ICSE 2025 Sustainable Education — Participant (Sep 2025)",
+        "NexSymp 2025 — Reviewer, Science & Technology (Sep 2025)",
+        "3rd International Article Writing Competition — Co-author of 2 articles (2025)",
+        "Workshop on Proposal Defense & Viva Voce — Attendee (Jul 2025)"
+      ]
+    };
 
-Here is everything you know about Valentine:
+    function getReply(q) {
+      const lq = q.toLowerCase();
 
-NAME: Kirimi Valentine Muriira
-LOCATION: Nairobi, Kenya
-EMAIL: kirimivalentine@gmail.com
-PHONE: +254 746 414 833
-LINKEDIN: https://www.linkedin.com/in/valentine-kirimi-851602280
+      /* Greetings */
+      if (/^(hi|hello|hey|howdy|good\s*(morning|afternoon|evening))/.test(lq))
+        return `Hello! 👋 Great to meet you. I'm Valentine's AI assistant. Ask me anything about his research, teaching, publications, or how to reach him!`;
 
-ABOUT: A dedicated educator and researcher specializing in Learning, Design & Technology, Mathematics, and Chemistry. Currently completing a Master's by Research at INTI International University, Malaysia (May 2024 – April 2026). Has 8 international peer-reviewed publications. Passionate about instructional design, digital learning, and technology integration in education.
+      /* Thanks */
+      if (/thank|thanks|great|awesome|perfect|nice/.test(lq) && lq.length < 40)
+        return `You're welcome! 😊 Feel free to ask anything else, or switch to the <strong>Chat with Valentine</strong> tab to reach him directly.`;
 
-EDUCATION:
-- Master of Education in Learning, Design & Technology — INTI International University, Nilai, Malaysia (May 2024 – April 2026, By Research)
-- Bachelor of Education Science (Mathematics & Chemistry) — The Catholic University of Eastern Africa (2019 – 2023)
+      /* Who is / about */
+      if (/who is|about him|tell me about|introduce|background/.test(lq))
+        return `${kb.summary}<br><br>He's based in <strong>Nairobi, Kenya</strong> and is open to research collaborations, teaching roles, and instructional design opportunities.`;
 
-EXPERIENCE:
-- Mathematics Teacher, Al-Ahagaaf International Schools, Mukalla (Aug 2024 – Sep 2025) — IGCSE Cambridge curriculum, lesson planning, assessment, educational material creation
-- Mathematics & Chemistry Teacher, Faith Sultan Mohamed School, Boorama (Aug 2022 – May 2024)
-- Mathematics & Chemistry Teacher, Highridge Girls Secondary School, Nairobi (Apr 2022 – Aug 2022)
-- VR Attendant & Co-Technician, Stedmak Gardens, Karen Rd, Nairobi — team management, customer service, marketing
+      /* Contact / reach / email / phone */
+      if (/contact|reach|email|phone|get in touch|how to find/.test(lq))
+        return `You can reach Valentine directly:<br><br>📧 <a class="msg-link" href="mailto:${kb.email}">${kb.email}</a><br>📞 ${kb.phone}<br>🔗 <a class="msg-link" href="${kb.linkedin}" target="_blank">LinkedIn</a><br><br>Or use the <strong>Send a Message</strong> form on this page!`;
 
-SKILLS: Instructional Design, Curriculum Development, Technology Integration, Digital Learning, Research & Academic Writing, Evaluation & Assessment, Content Creation, Teaching Maths & Chemistry, IGCSE & CBE Curricula, English & Swahili
+      /* LinkedIn */
+      if (/linkedin/.test(lq))
+        return `Valentine's LinkedIn profile: <a class="msg-link" href="${kb.linkedin}" target="_blank">valentine-kirimi-851602280</a>`;
 
-PUBLICATIONS (8 peer-reviewed):
-1. Muriira, V. et al. (2025) — Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach. Educational Process: International Journal, 18. DOI: 10.22521/edupij.2025.18.428
-2. Muriira, V. & Nallisamy, V. (2025) — Generative AI and Educational Assessment: A Bibliometric Mapping. Springer Nature Switzerland. DOI: 10.1007/978-3-032-05306-0_3
-3. Muriira, V. et al. (2025) — Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis. DOI: 10.21203/rs.3.rs-8161995/v1
-4. Muriira, V. K. et al. (2025) — Trends and Emerging Research Impact of AI in Climate Change Monitoring. IEEE EarthSense 2025. DOI: 10.1109/EarthSense66084.2025.11297307
-5. Li, D., Xue, G., Miao, S., Qiao, X., & Muriira, V. K. (2026) — AI and sustainable entrepreneurship nexus. Entrepreneurship and Sustainability Issues, 13(3). DOI: 10.9770/n3433346968
-6. Muriira, V. K. et al. (2026) — Exploring AI's Role in Educational Data Mining. IJORAS, 8(1), 20–31. DOI: 10.33093/ijoras.2026.8.1.3
-7. Muriira, V. K. et al. (2026) — The Impact of AI on Educational Content Creation. IJORAS, 8(1), 32–43. DOI: 10.33093/ijoras.2026.8.1.4
-8. Kirimi Muriira, V. et al. (2026) — AI-Augmented Mobile and Data-Driven Decision Making in Business. IJIM, 20(07), 123–137. DOI: 10.3991/ijim.v20i07.61107
+      /* CV / download */
+      if (/cv|resume|curriculum/.test(lq))
+        return `You can download Valentine's CV using the <strong>Download CV</strong> button on this page. It covers his full academic and professional history.`;
 
-ACHIEVEMENTS:
-- IEEE EARTHSENSE 2025 — Research Paper Presenter (Sep 2025)
-- International Digital Education Conference 2025 — Silver Award Winner (Oct 2025)
-- ICSE 2025 Sustainable Education — Participant (Sep 2025)
-- NexSymp 2025 — Reviewer, Science & Technology (Sep 2025)
-- 3rd International Article Writing Competition — Co-author of 2 articles (2025)
-- Workshop on Proposal Defense & Viva Voce — Attendee (Jul 2025)
+      /* Research / focus areas */
+      if (/research|focus|speciali[sz]|area|topic|interest/.test(lq))
+        return `Valentine's research sits at the intersection of <strong>AI in Education</strong>, instructional design, and bibliometric analysis. His work spans:<br><br>
+• Technology-enhanced learning for neurodiverse students<br>
+• Generative AI in educational assessment<br>
+• AI's role in educational data mining & content creation<br>
+• AI in climate change monitoring (IEEE)<br>
+• Digital solutions against forced migration<br>
+• AI and sustainable entrepreneurship<br><br>
+He has 8 peer-reviewed publications in these areas.`;
 
-If someone wants to contact Valentine, direct them to email kirimivalentine@gmail.com or use the contact form on the website. Keep responses concise (3-5 sentences max unless more detail is specifically requested). Don't make up any information not listed above.`;
-
-    const history = [];
-
-    async function fetchAI(userMsg) {
-      addTyping();
-      history.push({ role: 'user', content: userMsg });
-      try {
-        const res = await fetch('https://api.anthropic.com/v1/messages', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 1000,
-            system: SYSTEM,
-            messages: history
-          })
-        });
-        const data = await res.json();
-        const reply = data.content?.[0]?.text || "I'm sorry, I couldn't retrieve a response. Please try again or email Valentine directly.";
-        history.push({ role: 'assistant', content: reply });
-        removeTyping();
-        addMsg(reply.replace(/\n/g, '<br>'), 'bot');
-      } catch(err) {
-        removeTyping();
-        addMsg("Hmm, something went wrong. Please try emailing Valentine at kirimivalentine@gmail.com directly!", 'bot');
+      /* Publications / papers */
+      if (/publication|paper|journal|publish|article|research paper|written|wrote/.test(lq)) {
+        const list = kb.publications.map(p =>
+          `<strong>${p.n}.</strong> ${p.title} — <em>${p.journal}</em> (${p.year})`
+        ).join('<br>');
+        return `Valentine has <strong>8 peer-reviewed publications</strong>:<br><br>${list}<br><br>Ask me about any specific paper for its DOI link!`;
       }
+
+      /* Specific publication lookups */
+      if (/neurodiverse|neuro/.test(lq)) {
+        const p = kb.publications[0];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/generative|assessment|springer/.test(lq)) {
+        const p = kb.publications[1];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/migrat|forced|violence|digital front/.test(lq)) {
+        const p = kb.publications[2];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/climate|ieee|earthsense/.test(lq)) {
+        const p = kb.publications[3];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/entrepreneur|sustain/.test(lq)) {
+        const p = kb.publications[4];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/data.min/.test(lq)) {
+        const p = kb.publications[5];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/content.creat/.test(lq)) {
+        const p = kb.publications[6];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+      if (/mobile|decision.mak|business/.test(lq)) {
+        const p = kb.publications[7];
+        return `📄 <strong>${p.title}</strong><br>${p.journal} (${p.year})<br><a class="msg-link" href="${p.doi}" target="_blank">${p.doi} ↗</a>`;
+      }
+
+      /* Education */
+      if (/education|degree|qualif|univers|master|bachelor|inti|catholic|studied|study/.test(lq)) {
+        return `Valentine holds two degrees:<br><br>
+🎓 <strong>${kb.education[0].degree}</strong><br>&nbsp;&nbsp;&nbsp;${kb.education[0].school} · ${kb.education[0].period} (${kb.education[0].type})<br><br>
+🎓 <strong>${kb.education[1].degree}</strong><br>&nbsp;&nbsp;&nbsp;${kb.education[1].school} · ${kb.education[1].period}`;
+      }
+
+      /* Experience / teaching / work */
+      if (/experience|work|teach|job|career|history|school|employ/.test(lq)) {
+        const list = kb.experience.map(e =>
+          `• <strong>${e.role}</strong> — ${e.org} (${e.period || 'dates vary'})${e.notes ? '<br>&nbsp;&nbsp;&nbsp;' + e.notes : ''}`
+        ).join('<br>');
+        return `Valentine's work history:<br><br>${list}`;
+      }
+
+      /* IGCSE / Cambridge / curriculum */
+      if (/igcse|cambridge|cbe|curriculum/.test(lq))
+        return `Yes! Valentine has experience with both the <strong>IGCSE Cambridge</strong> and <strong>CBE (Competency-Based Education)</strong> curricula, gained through teaching roles in Kenya and internationally in Mukalla, Yemen.`;
+
+      /* Skills */
+      if (/skill|expertise|can do|capable|proficien|good at/.test(lq))
+        return `Valentine's core skills include:<br><br>${kb.skills.map(s => `• ${s}`).join('<br>')}`;
+
+      /* Awards / achievements / achievements */
+      if (/award|achiev|honor|honour|prize|silver|ieee|winner|conference/.test(lq))
+        return `Valentine's achievements include:<br><br>${kb.awards.map(a => `🏆 ${a}`).join('<br>')}`;
+
+      /* Location */
+      if (/locat|where|country|kenya|nairobi/.test(lq))
+        return `Valentine is based in <strong>Nairobi, Kenya</strong>. He has also taught internationally in Yemen and Somaliland.`;
+
+      /* Availability / open to work / hire */
+      if (/availab|hire|opportunit|open to|looking for|recruit/.test(lq))
+        return `Yes! Valentine is <strong>open to opportunities</strong> in instructional design, educational research, curriculum development, and teaching roles. You can reach him at <a class="msg-link" href="mailto:${kb.email}">${kb.email}</a> or via the contact form.`;
+
+      /* Collaborate */
+      if (/collaborat|partner|work with|joint|co-author|research together/.test(lq))
+        return `Valentine is very open to research collaborations, especially in AI in education, instructional design, and educational technology. Send him an email at <a class="msg-link" href="mailto:${kb.email}">${kb.email}</a> or connect on <a class="msg-link" href="${kb.linkedin}" target="_blank">LinkedIn</a> to get started!`;
+
+      /* Languages */
+      if (/language|speak|english|swahili/.test(lq))
+        return `Valentine is fluent in <strong>English</strong> and <strong>Swahili</strong>.`;
+
+      /* Maths / chemistry */
+      if (/math|maths|chemistry|science|subject/.test(lq))
+        return `Valentine specialises in teaching <strong>Mathematics</strong> and <strong>Chemistry</strong> at secondary level, with experience in both IGCSE Cambridge and CBE curricula. He also integrates technology into his science and maths lessons.`;
+
+      /* AI / technology */
+      if (/artificial intellig|\bai\b|machine learn|technology|digital|edtech/.test(lq))
+        return `AI in education is Valentine's primary research theme. His publications explore generative AI in assessment, AI-driven educational data mining, AI content creation, and AI's broader societal applications — including climate monitoring and sustainable entrepreneurship.`;
+
+      /* Human / live chat */
+      if (/human|real person|valentine himself|speak to him|talk to him|live chat/.test(lq))
+        return `Sure! Switch to the <strong>"Chat with Valentine"</strong> tab at the top of this panel — you can start a live chat or reach him by email directly.`;
+
+      /* Default fallback */
+      return `That's a great question! I may not have a specific answer for that, but you can reach Valentine directly at <a class="msg-link" href="mailto:${kb.email}">${kb.email}</a> — or switch to the <strong>"Chat with Valentine"</strong> tab for a live conversation. You can also ask me about his research, publications, teaching experience, skills, or qualifications!`;
+    }
+
+    function simulateReply(q) {
+      addTyping();
+      /* Simulate a brief typing delay so it feels natural */
+      const delay = 600 + Math.random() * 700;
+      setTimeout(() => {
+        removeTyping();
+        const reply = getReply(q);
+        addMsg(reply, 'bot');
+      }, delay);
     }
   </script>
 
