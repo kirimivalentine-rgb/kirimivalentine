@@ -17,28 +17,21 @@
       --white: #e8edf2;
     }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--dark);
-      color: var(--white);
-      overflow-x: hidden;
-    }
+    body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--white); overflow-x: hidden; }
     body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
+      content: ''; position: fixed; inset: 0; z-index: 0;
       background:
         radial-gradient(ellipse 80% 50% at 20% 0%, rgba(200,169,110,0.07) 0%, transparent 60%),
         radial-gradient(ellipse 60% 40% at 80% 100%, rgba(200,169,110,0.05) 0%, transparent 50%);
       pointer-events: none;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 20px 60px;
-      background: rgba(8,12,16,0.85);
-      backdrop-filter: blur(20px);
+      background: rgba(8,12,16,0.85); backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
     .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary); letter-spacing: 1px; }
@@ -46,41 +39,33 @@
     nav ul a { color: var(--text); text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
     nav ul a:hover { color: var(--primary); }
 
-    /* ── HEADER ── */
+    /* HEADER */
     header {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      padding: 120px 20px 60px;
-      position: relative; z-index: 1;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 120px 20px 60px; position: relative; z-index: 1;
     }
     .avatar-wrap { position: relative; width: 170px; height: 170px; margin-bottom: 32px; }
     .avatar-wrap::before {
-      content: '';
-      position: absolute; inset: -4px; border-radius: 50%;
+      content: ''; position: absolute; inset: -4px; border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), transparent 50%, var(--primary-dark));
       animation: spin 8s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
     .avatar {
-      position: relative; z-index: 1;
-      width: 170px; height: 170px; border-radius: 50%;
-      background: var(--card);
-      border: 4px solid var(--dark);
-      overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1; width: 170px; height: 170px; border-radius: 50%;
+      background: var(--card); border: 4px solid var(--dark);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
     }
     .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .avatar-initials { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--primary); font-weight: 800; }
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(200,169,110,0.1); border: 1px solid rgba(200,169,110,0.3);
-      padding: 7px 18px; border-radius: 30px;
-      font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; margin-bottom: 20px;
+      padding: 7px 18px; border-radius: 30px; font-size: 0.8rem; color: var(--primary); letter-spacing: 1px; margin-bottom: 20px;
     }
-    .badge::before { content: '●'; font-size: 0.6rem; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .badge::before { content: '●'; font-size: 0.6rem; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
     header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 16px; }
     header h1 span { color: var(--primary); }
     .tagline { font-size: 1rem; color: var(--text); max-width: 560px; line-height: 1.8; margin-bottom: 40px; }
@@ -94,14 +79,14 @@
     .btn-cv:hover { background: var(--primary); color: #080c10; transform: translateY(-2px); }
     .btn-cv svg { width: 16px; height: 16px; }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     section { max-width: 900px; margin: 0 auto; padding: 90px 20px; position: relative; z-index: 1; }
     .section-label { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 10px; }
     h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 8px; }
     .divider { width: 40px; height: 2px; background: var(--primary); margin: 16px 0 36px; }
     .about-text { color: var(--text); line-height: 1.9; font-size: 1rem; }
 
-    /* ── EXPERIENCE ── */
+    /* CARDS */
     .timeline { display: flex; flex-direction: column; gap: 16px; }
     .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: border-color 0.3s; }
     .card:hover { border-color: rgba(200,169,110,0.4); }
@@ -109,7 +94,7 @@
     .card .meta { color: var(--primary); font-size: 0.82rem; margin-bottom: 14px; }
     .card ul { color: var(--text); padding-left: 18px; font-size: 0.88rem; line-height: 1.9; }
 
-    /* ── EDUCATION ── */
+    /* EDUCATION */
     .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: border-color 0.3s; }
     .edu-card:hover { border-color: rgba(200,169,110,0.4); }
@@ -117,12 +102,12 @@
     .edu-card .school { color: var(--primary); font-size: 0.85rem; }
     .edu-card .year { color: var(--text); font-size: 0.82rem; margin-top: 8px; }
 
-    /* ── SKILLS ── */
+    /* SKILLS */
     .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
     .skill { background: var(--card); border: 1px solid var(--border); padding: 8px 18px; border-radius: 30px; font-size: 0.85rem; color: var(--text); transition: all 0.3s; }
     .skill:hover { border-color: var(--primary); color: var(--primary); }
 
-    /* ── PUBLICATIONS ── */
+    /* PUBLICATIONS */
     .pub-list { display: flex; flex-direction: column; gap: 12px; }
     .pub { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; transition: border-color 0.3s; }
     .pub:hover { border-color: rgba(200,169,110,0.4); }
@@ -130,14 +115,14 @@
     .pub p { color: var(--text); font-size: 0.86rem; line-height: 1.7; margin-bottom: 8px; }
     .pub a { color: var(--primary); font-size: 0.82rem; word-break: break-all; }
 
-    /* ── ACHIEVEMENTS ── */
+    /* ACHIEVEMENTS */
     .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .ach { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; transition: border-color 0.3s; }
     .ach:hover { border-color: rgba(200,169,110,0.4); }
     .ach h4 { font-size: 0.88rem; margin-bottom: 6px; font-weight: 500; }
     .ach span { color: var(--primary); font-size: 0.78rem; }
 
-    /* ── CONTACT ── */
+    /* CONTACT */
     .contact-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: start; }
     .contact-info { display: flex; flex-direction: column; gap: 16px; }
     .contact-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
@@ -149,11 +134,9 @@
     .form-group { margin-bottom: 18px; }
     .form-group label { display: block; font-size: 0.8rem; color: var(--text); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.8px; }
     .form-group input, .form-group textarea {
-      width: 100%; background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border); border-radius: 8px;
-      padding: 12px 16px; color: var(--white);
-      font-family: 'DM Sans', sans-serif; font-size: 0.92rem;
-      transition: border-color 0.3s; outline: none; resize: none;
+      width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px; color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; transition: border-color 0.3s; outline: none; resize: none;
     }
     .form-group input:focus, .form-group textarea:focus { border-color: var(--primary); }
     .form-group textarea { height: 130px; }
@@ -161,8 +144,7 @@
     .btn-send {
       width: 100%; padding: 14px; background: var(--primary); color: #080c10;
       border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; font-weight: 700; letter-spacing: 1px;
-      text-transform: uppercase; cursor: pointer; transition: all 0.3s;
+      font-size: 0.9rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all 0.3s;
     }
     .btn-send:hover { background: var(--primary-dark); transform: translateY(-2px); }
     .form-note { font-size: 0.78rem; color: var(--text); text-align: center; margin-top: 12px; }
@@ -170,201 +152,250 @@
     .form-success { display: none; text-align: center; padding: 30px; color: var(--primary); font-size: 1rem; }
     .form-success .check { font-size: 2.5rem; margin-bottom: 10px; }
 
-    /* ── FOOTER ── */
     footer { text-align: center; padding: 40px; color: var(--text); font-size: 0.82rem; border-top: 1px solid var(--border); position: relative; z-index: 1; }
     footer span { color: var(--primary); }
 
-    /* ── AI CHAT BUBBLE ── */
-    #ai-toggle {
-      position: fixed; bottom: 32px; right: 32px; z-index: 9999;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    /* ═══════════════════════════════════════════════════════
+       FLOATING BUTTONS — THREE SEPARATE POSITIONS
+       • AI Chat    → bottom-RIGHT  (right: 32px, bottom: 32px)
+       • WhatsApp   → bottom-LEFT   (left:  32px, bottom: 32px)
+       • Tawk.to    → bottom-RIGHT  (right: 32px, bottom: 110px)  — above AI
+    ═══════════════════════════════════════════════════════ */
+
+    /* shared fab base */
+    .fab {
+      position: fixed; z-index: 9999;
+      width: 58px; height: 58px; border-radius: 50%;
       border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 32px rgba(200,169,110,0.35);
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.25s, box-shadow 0.25s;
+      flex-shrink: 0;
     }
-    #ai-toggle:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(200,169,110,0.5); }
-    #ai-toggle svg { width: 28px; height: 28px; fill: #080c10; }
-    .ai-pulse {
-      position: absolute; top: -4px; right: -4px;
-      width: 16px; height: 16px; border-radius: 50%;
-      background: #4ade80; border: 2px solid var(--dark);
-      animation: pulse 2s infinite;
-    }
+    .fab:hover { transform: scale(1.1); }
 
-    /* ── AI PANEL ── */
+    /* pulse dot */
+    .fab-dot {
+      position: absolute; top: -2px; right: -2px;
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid var(--dark); animation: blink 2s infinite;
+    }
+    .dot-green { background: #4ade80; }
+    .dot-gold  { background: var(--primary); }
+
+    /* tooltip */
+    .fab-tip {
+      position: absolute; white-space: nowrap;
+      background: #0d1117; border: 1px solid var(--border);
+      color: var(--white); font-size: 0.72rem; font-family: 'DM Sans', sans-serif;
+      padding: 5px 11px; border-radius: 8px;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .fab:hover .fab-tip { opacity: 1; }
+
+    /* ── AI button: bottom-right ── */
+    #fab-ai {
+      bottom: 32px; right: 32px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 6px 24px rgba(200,169,110,0.4);
+    }
+    #fab-ai:hover { box-shadow: 0 10px 36px rgba(200,169,110,0.6); }
+    #fab-ai svg { width: 27px; height: 27px; fill: #080c10; }
+    #fab-ai .fab-tip { right: 70px; top: 50%; transform: translateY(-50%); }
+
+    /* ── Tawk.to button: above AI on the right ── */
+    #fab-tawk {
+      bottom: 106px; right: 32px;
+      background: #0d1117; border: 2px solid var(--primary);
+      box-shadow: 0 6px 24px rgba(200,169,110,0.2);
+    }
+    #fab-tawk:hover { box-shadow: 0 10px 32px rgba(200,169,110,0.4); }
+    #fab-tawk svg { width: 25px; height: 25px; fill: var(--primary); }
+    #fab-tawk .fab-tip { right: 70px; top: 50%; transform: translateY(-50%); }
+
+    /* ── WhatsApp button: bottom-left ── */
+    #fab-wa {
+      bottom: 32px; left: 32px;
+      background: #25D366;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    }
+    #fab-wa:hover { box-shadow: 0 10px 36px rgba(37,211,102,0.6); }
+    #fab-wa svg { width: 29px; height: 29px; fill: #fff; }
+    #fab-wa .fab-tip { left: 70px; top: 50%; transform: translateY(-50%); }
+
+    /* ═══════════════════════════════════════════════════════
+       AI CHAT PANEL (slides up from bottom-right)
+    ═══════════════════════════════════════════════════════ */
     #ai-panel {
-      position: fixed; bottom: 104px; right: 32px; z-index: 9998;
-      width: 390px; height: 560px;
-      background: #0d1117;
-      border: 1px solid rgba(200,169,110,0.3);
-      border-radius: 20px;
-      display: flex; flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
-      transform: scale(0.9) translateY(20px);
-      opacity: 0;
-      pointer-events: none;
+      position: fixed; bottom: 106px; right: 104px; z-index: 9998;
+      width: 380px; height: 555px;
+      background: #0d1117; border: 1px solid rgba(200,169,110,0.3);
+      border-radius: 20px; display: flex; flex-direction: column;
+      overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.65);
+      transform: scale(0.9) translateY(20px); opacity: 0; pointer-events: none;
       transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
     }
     #ai-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
 
-    .ai-header {
-      padding: 16px 20px;
-      background: linear-gradient(135deg, rgba(200,169,110,0.12), rgba(200,169,110,0.04));
+    .ai-hdr {
+      padding: 15px 18px;
+      background: linear-gradient(135deg, rgba(200,169,110,0.13), rgba(200,169,110,0.04));
       border-bottom: 1px solid rgba(200,169,110,0.15);
-      display: flex; align-items: center; gap: 12px;
-      flex-shrink: 0;
+      display: flex; align-items: center; gap: 11px; flex-shrink: 0;
     }
-    .ai-avatar {
-      width: 40px; height: 40px; border-radius: 50%;
+    .ai-av {
+      width: 38px; height: 38px; border-radius: 50%;
       background: linear-gradient(135deg, var(--primary), var(--primary-dark));
       display: flex; align-items: center; justify-content: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem; color: #080c10; font-weight: 800; flex-shrink: 0;
+      font-family: 'Playfair Display', serif; font-size: 0.95rem;
+      color: #080c10; font-weight: 800; flex-shrink: 0;
     }
-    .ai-header-text h4 { font-size: 0.9rem; font-weight: 600; color: var(--white); }
-    .ai-header-text p { font-size: 0.75rem; color: var(--primary); }
-    .ai-header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
-    .ai-human-btn {
-      background: rgba(74,222,128,0.12); border: 1px solid rgba(74,222,128,0.35);
-      color: #4ade80; font-size: 0.7rem; font-family: 'DM Sans', sans-serif;
-      padding: 5px 10px; border-radius: 20px; cursor: pointer;
-      white-space: nowrap; transition: all 0.2s; display: flex; align-items: center; gap: 5px;
+    .ai-hdr-txt h4 { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+    .ai-hdr-txt p  { font-size: 0.72rem; color: var(--primary); margin-top: 1px; }
+    .ai-hdr-status { display: flex; align-items: center; gap: 5px; font-size: 0.68rem; color: #4ade80; margin-top: 2px; }
+    .ai-hdr-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: blink 2s infinite; display: inline-block; }
+    .ai-x {
+      margin-left: auto; background: none; border: none;
+      color: var(--text); cursor: pointer; font-size: 1.15rem; transition: color 0.2s; padding: 2px;
     }
-    .ai-human-btn:hover { background: rgba(74,222,128,0.22); }
-    .ai-human-btn::before { content: '👤'; font-size: 0.65rem; }
-    .ai-close { background: none; border: none; color: var(--text); cursor: pointer; font-size: 1.2rem; transition: color 0.2s; padding: 2px; }
-    .ai-close:hover { color: var(--white); }
+    .ai-x:hover { color: var(--white); }
 
-    /* ── TABS ── */
-    .ai-tabs { display: flex; border-bottom: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; }
-    .ai-tab {
-      flex: 1; padding: 10px; font-size: 0.78rem; font-family: 'DM Sans', sans-serif;
-      background: none; border: none; color: var(--text); cursor: pointer;
-      border-bottom: 2px solid transparent; transition: all 0.2s; letter-spacing: 0.5px;
-    }
-    .ai-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-    .tab-content { display: none; flex: 1; flex-direction: column; overflow: hidden; }
-    .tab-content.active { display: flex; }
-
-    /* ── MESSAGES ── */
     .ai-msgs {
-      flex: 1; overflow-y: auto; padding: 16px;
-      display: flex; flex-direction: column; gap: 12px;
+      flex: 1; overflow-y: auto; padding: 14px;
+      display: flex; flex-direction: column; gap: 11px;
       scrollbar-width: thin; scrollbar-color: var(--border) transparent;
     }
-    .ai-msgs::-webkit-scrollbar { width: 4px; }
-    .ai-msgs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-    .msg { max-width: 88%; display: flex; flex-direction: column; gap: 4px; }
-    .msg.bot { align-self: flex-start; }
+    .ai-msgs::-webkit-scrollbar { width: 3px; }
+    .ai-msgs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .msg { max-width: 88%; display: flex; flex-direction: column; }
+    .msg.bot  { align-self: flex-start; }
     .msg.user { align-self: flex-end; }
-    .msg-bubble { padding: 10px 14px; border-radius: 14px; font-size: 0.86rem; line-height: 1.6; }
-    .msg.bot .msg-bubble {
-      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
-      color: var(--white); border-bottom-left-radius: 4px;
+    .bubble {
+      padding: 9px 13px; border-radius: 14px;
+      font-size: 0.85rem; line-height: 1.65;
     }
-    .msg.user .msg-bubble {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #080c10; font-weight: 500; border-bottom-right-radius: 4px;
-    }
-    .msg-link { color: var(--primary); text-decoration: underline; font-size: 0.82rem; }
+    .msg.bot  .bubble { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--white); border-bottom-left-radius: 3px; }
+    .msg.user .bubble { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: #080c10; font-weight: 500; border-bottom-right-radius: 3px; }
+    .bubble a { color: var(--primary); text-decoration: underline; }
 
-    /* ── HUMAN TAB ── */
-    .human-tab-inner {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 24px; text-align: center; gap: 14px;
+    .chips {
+      padding: 0 14px 9px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0;
     }
-    .human-icon { font-size: 2.8rem; margin-bottom: 4px; }
-    .human-tab-inner h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--white); }
-    .human-tab-inner p { font-size: 0.84rem; color: var(--text); line-height: 1.7; max-width: 280px; }
-    .human-online { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: #4ade80; }
-    .human-online::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 2s infinite; display: inline-block; }
-    .btn-start-chat {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #080c10; font-weight: 700; font-family: 'DM Sans', sans-serif;
-      padding: 12px 28px; border-radius: 8px; border: none; cursor: pointer;
-      font-size: 0.88rem; letter-spacing: 0.5px; transition: all 0.3s;
-      text-decoration: none; display: inline-block;
-    }
-    .btn-start-chat:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,169,110,0.3); }
-    .btn-email-alt {
-      background: none; border: 1px solid var(--border); color: var(--text);
-      font-family: 'DM Sans', sans-serif; padding: 10px 24px; border-radius: 8px;
-      cursor: pointer; font-size: 0.82rem; transition: all 0.2s;
-      text-decoration: none; display: inline-block;
-    }
-    .btn-email-alt:hover { border-color: var(--primary); color: var(--primary); }
-    .divider-or { font-size: 0.75rem; color: var(--text); }
-
-    /* ── CHIPS ── */
-    .ai-suggestions { padding: 0 16px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0; }
-    .ai-chip {
+    .chip {
       background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.25);
-      color: var(--primary); font-size: 0.73rem;
+      color: var(--primary); font-size: 0.72rem;
       padding: 5px 11px; border-radius: 20px;
-      cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+      cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif;
     }
-    .ai-chip:hover { background: rgba(200,169,110,0.18); }
+    .chip:hover { background: rgba(200,169,110,0.2); }
 
-    /* ── INPUT ROW ── */
-    .ai-input-row {
-      padding: 10px 14px; border-top: 1px solid rgba(255,255,255,0.06);
+    .ai-inp-row {
+      padding: 9px 13px; border-top: 1px solid rgba(255,255,255,0.06);
       display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0;
     }
-    #ai-input {
-      flex: 1; background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 10px; padding: 10px 14px;
-      color: var(--white); font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem; resize: none; outline: none;
-      max-height: 100px; overflow-y: auto; line-height: 1.5;
+    #ai-inp {
+      flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px; padding: 9px 13px; color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 0.87rem;
+      resize: none; outline: none; max-height: 96px; line-height: 1.5;
     }
-    #ai-input:focus { border-color: rgba(200,169,110,0.4); }
-    #ai-input::placeholder { color: rgba(138,154,176,0.6); }
-    #ai-send {
-      width: 38px; height: 38px; border-radius: 10px;
+    #ai-inp:focus { border-color: rgba(200,169,110,0.4); }
+    #ai-inp::placeholder { color: rgba(138,154,176,0.55); }
+    #ai-snd {
+      width: 37px; height: 37px; border-radius: 10px;
       background: var(--primary); border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; transition: background 0.2s;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s;
     }
-    #ai-send:hover { background: var(--primary-dark); }
-    #ai-send:disabled { opacity: 0.45; cursor: default; }
-    #ai-send svg { width: 16px; height: 16px; fill: #080c10; }
+    #ai-snd:hover { background: var(--primary-dark); }
+    #ai-snd:disabled { opacity: 0.4; cursor: default; }
+    #ai-snd svg { width: 15px; height: 15px; fill: #080c10; }
 
-    /* ── TYPING INDICATOR ── */
-    .typing-indicator {
-      display: flex; gap: 4px; align-items: center;
-      padding: 10px 14px;
+    .typing {
+      display: flex; gap: 4px; align-items: center; padding: 9px 13px;
       background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 14px; border-bottom-left-radius: 4px; width: fit-content;
+      border-radius: 14px; border-bottom-left-radius: 3px; width: fit-content;
     }
-    .typing-indicator span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--primary); opacity: 0.6;
-      animation: bounce 1.2s infinite;
+    .typing span {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--primary); opacity: 0.6; animation: bounce 1.2s infinite;
     }
-    .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+    .typing span:nth-child(2) { animation-delay: 0.2s; }
+    .typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
 
-    /* ── RESPONSIVE ── */
+    /* ═══════════════════════════════════════════════════════
+       WHATSAPP POPUP (bottom-left, above WA button)
+    ═══════════════════════════════════════════════════════ */
+    #wa-popup {
+      position: fixed; bottom: 106px; left: 32px; z-index: 9998;
+      width: 300px; background: #0d1117;
+      border: 1px solid rgba(37,211,102,0.3); border-radius: 18px;
+      overflow: hidden; box-shadow: 0 16px 60px rgba(0,0,0,0.55);
+      transform: scale(0.88) translateY(12px); opacity: 0; pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #wa-popup.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+
+    .wa-hdr {
+      background: linear-gradient(135deg, #075E54, #128C7E);
+      padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .wa-av {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; font-weight: 800;
+      border: 2px solid rgba(255,255,255,0.25); flex-shrink: 0;
+    }
+    .wa-hdr-txt { flex: 1; }
+    .wa-hdr-txt h4 { font-size: 0.88rem; font-weight: 600; color: #fff; }
+    .wa-hdr-txt p  { font-size: 0.7rem; color: rgba(255,255,255,0.65); margin-top: 1px; }
+    .wa-online { display: flex; align-items: center; gap: 4px; font-size: 0.68rem; color: #4ade80; margin-top: 2px; }
+    .wa-online::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; animation: blink 2s infinite; display: inline-block; }
+    .wa-x { background: none; border: none; color: rgba(255,255,255,0.65); cursor: pointer; font-size: 1.1rem; padding: 2px; transition: color 0.2s; }
+    .wa-x:hover { color: #fff; }
+
+    .wa-body { padding: 16px; }
+    .wa-bubble {
+      background: #1f2c34; border-radius: 10px 10px 10px 2px;
+      padding: 11px 14px; margin-bottom: 14px;
+    }
+    .wa-bubble p { font-size: 0.83rem; color: var(--white); line-height: 1.6; }
+    .wa-bubble .wa-time { font-size: 0.67rem; color: var(--text); margin-top: 5px; text-align: right; }
+
+    .wa-actions { display: flex; flex-direction: column; gap: 8px; }
+    .wa-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: #25D366; color: #fff; font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: 0.87rem; padding: 12px 16px;
+      border-radius: 10px; text-decoration: none; transition: background 0.2s, transform 0.2s;
+    }
+    .wa-btn:hover { background: #1ebe5d; transform: translateY(-1px); }
+    .wa-btn svg { width: 18px; height: 18px; fill: #fff; flex-shrink: 0; }
+    .wa-note { font-size: 0.7rem; color: var(--text); text-align: center; }
+
+    /* ── TAWK.TO CUSTOM BADGE (hidden — using native widget) ── */
+
+    /* RESPONSIVE */
     @media (max-width: 700px) {
       nav { padding: 16px 20px; }
-      nav ul { gap: 16px; }
-      nav ul a { font-size: 0.75rem; }
+      nav ul { gap: 14px; }
+      nav ul a { font-size: 0.72rem; }
       .edu-grid, .ach-grid { grid-template-columns: 1fr; }
       .contact-layout { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
-      #ai-panel { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
-      #ai-toggle { right: 16px; bottom: 16px; }
+      #ai-panel { width: calc(100vw - 24px); right: 12px; bottom: 100px; }
+      #wa-popup { width: calc(100vw - 24px); left: 12px; bottom: 100px; }
+      #fab-ai  { right: 16px; bottom: 16px; }
+      #fab-tawk{ right: 16px; bottom: 90px; }
+      #fab-wa  { left: 16px;  bottom: 16px; }
+      .fab-tip { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
     <div class="logo">KV.</div>
     <ul>
@@ -375,15 +406,13 @@
     </ul>
   </nav>
 
+  <!-- HEADER -->
   <header>
     <div class="avatar-wrap">
       <div class="avatar">
-        <img
-          src="photo.jpeg"
-          alt="Kirimi Valentine"
-          onerror="this.style.display='none'; document.getElementById('avatar-fallback').style.display='flex';"
-        >
-        <div id="avatar-fallback" class="avatar-initials" style="display:none;">KV</div>
+        <img src="photo.jpeg" alt="Kirimi Valentine"
+          onerror="this.style.display='none';document.getElementById('av-fb').style.display='flex';">
+        <div id="av-fb" class="avatar-initials" style="display:none;">KV</div>
       </div>
     </div>
     <div class="badge">📍 Nairobi, Kenya &nbsp;·&nbsp; Open to Opportunities</div>
@@ -406,6 +435,7 @@
     </div>
   </header>
 
+  <!-- ABOUT -->
   <section id="about">
     <p class="section-label">01 — About</p>
     <h2>Who I Am</h2>
@@ -420,6 +450,7 @@
     </p>
   </section>
 
+  <!-- EXPERIENCE -->
   <section id="experience">
     <p class="section-label">02 — Experience</p>
     <h2>Work History</h2>
@@ -439,7 +470,7 @@
         <h3>Mathematics & Chemistry Teacher</h3>
         <div class="meta">Aug 2022 – May 2024 · Faith Sultan Mohamed School, Boorama</div>
         <ul>
-          <li>Lesson planning, student assessment, individualized teaching</li>
+          <li>Lesson plannih ng, student assessment, individualized teaching</li>
           <li>Educational material creation and classroom management</li>
           <li>Active parent-teacher collaboration</li>
         </ul>
@@ -464,6 +495,7 @@
     </div>
   </section>
 
+  <!-- EDUCATION -->
   <section id="education">
     <p class="section-label">03 — Education</p>
     <h2>Academic Background</h2>
@@ -482,6 +514,7 @@
     </div>
   </section>
 
+  <!-- SKILLS -->
   <section id="skills">
     <p class="section-label">04 — Skills</p>
     <h2>Expertise</h2>
@@ -502,6 +535,7 @@
     </div>
   </section>
 
+  <!-- PUBLICATIONS -->
   <section id="publications">
     <p class="section-label">05 — Research</p>
     <h2>Publications</h2>
@@ -550,6 +584,7 @@
     </div>
   </section>
 
+  <!-- ACHIEVEMENTS -->
   <section id="achievements">
     <p class="section-label">06 — Awards</p>
     <h2>Achievements</h2>
@@ -564,6 +599,7 @@
     </div>
   </section>
 
+  <!-- CONTACT -->
   <section id="contact">
     <p class="section-label">07 — Contact</p>
     <h2>Let's Connect</h2>
@@ -575,8 +611,8 @@
           <a href="mailto:kirimivalentine@gmail.com">kirimivalentine@gmail.com</a>
         </div>
         <div class="contact-item">
-          <label>📞 Phone</label>
-          <p>+254 746 414 833</p>
+          <label>📞 Phone / WhatsApp</label>
+          <a href="https://wa.me/254746414833" target="_blank">+254 746 414 833</a>
         </div>
         <div class="contact-item">
           <label>🔗 LinkedIn</label>
@@ -635,86 +671,113 @@
     <p>© 2025 <span>Kirimi Valentine</span> · Built with ❤️ · Hosted free on GitHub Pages</p>
   </footer>
 
-  <!-- ═══════════════════════════════════════════
-       AI CHAT BUTTON
-  ════════════════════════════════════════════ -->
-  <button id="ai-toggle" aria-label="Open AI assistant">
-    <div class="ai-pulse"></div>
+
+  <!-- ═══════════════════════════════════════
+       THREE SEPARATE FLOATING BUTTONS
+  ════════════════════════════════════════ -->
+
+  <!-- 1. AI Chat — bottom RIGHT -->
+  <button class="fab" id="fab-ai" aria-label="AI Assistant">
+    <span class="fab-dot dot-green"></span>
+    <span class="fab-tip">AI Assistant</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 10.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+    </svg>
+  </button>
+
+  <!-- 2. Tawk.to Live Support — above AI, RIGHT -->
+  <button class="fab" id="fab-tawk" aria-label="Live Support">
+    <span class="fab-dot dot-gold"></span>
+    <span class="fab-tip">Live Support</span>
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.546 20.9a.75.75 0 00.94.94l3.732-.892A9.959 9.959 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm-1 13H8a.75.75 0 010-1.5h3a.75.75 0 010 1.5zm4-4H8a.75.75 0 010-1.5h7a.75.75 0 010 1.5zm0-4H8a.75.75 0 010-1.5h7a.75.75 0 010 1.5z"/>
     </svg>
   </button>
 
-  <!-- ═══════════════════════════════════════════
+  <!-- 3. WhatsApp — bottom LEFT -->
+  <button class="fab" id="fab-wa" aria-label="WhatsApp">
+    <span class="fab-dot dot-green"></span>
+    <span class="fab-tip">Chat on WhatsApp</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </button>
+
+
+  <!-- ═══════════════════════════════════════
        AI CHAT PANEL
-  ════════════════════════════════════════════ -->
-  <div id="ai-panel" role="dialog" aria-label="AI assistant chat">
-
-    <div class="ai-header">
-      <div class="ai-avatar">KV</div>
-      <div class="ai-header-text">
-        <h4>Valentine's Assistant</h4>
-        <p>Powered by Claude AI · Always available</p>
+  ════════════════════════════════════════ -->
+  <div id="ai-panel" role="dialog" aria-label="AI Assistant">
+    <div class="ai-hdr">
+      <div class="ai-av">KV</div>
+      <div class="ai-hdr-txt">
+        <h4>Valentine's AI Assistant</h4>
+        <p>Powered by Claude · Real answers</p>
+        <div class="ai-hdr-status">Online · Ready to help</div>
       </div>
-      <div class="ai-header-actions">
-        <button class="ai-human-btn" id="switch-to-human">Talk to Valentine</button>
-        <button class="ai-close" id="ai-close" aria-label="Close chat">✕</button>
-      </div>
+      <button class="ai-x" id="ai-close" aria-label="Close">✕</button>
     </div>
 
-    <div class="ai-tabs">
-      <button class="ai-tab active" data-tab="ai-tab">🤖 AI Assistant</button>
-      <button class="ai-tab" data-tab="human-tab">👤 Chat with Valentine</button>
-    </div>
-
-    <!-- AI Tab -->
-    <div class="tab-content active" id="ai-tab">
-      <div class="ai-msgs" id="ai-msgs">
-        <div class="msg bot">
-          <div class="msg-bubble">
-            Hi there! 👋 I'm Valentine's AI assistant, powered by Claude. Ask me anything about his research, teaching, publications, or how to get in touch!
-          </div>
+    <div class="ai-msgs" id="ai-msgs">
+      <div class="msg bot">
+        <div class="bubble">
+          Hi there! 👋 I'm Valentine's AI assistant. I can answer any question about his background, research, publications, teaching experience, or how to reach him. What would you like to know?
         </div>
       </div>
-
-      <div class="ai-suggestions" id="ai-chips">
-        <button class="ai-chip" data-q="What research does Valentine work on?">Research focus</button>
-        <button class="ai-chip" data-q="Tell me about his teaching experience">Teaching</button>
-        <button class="ai-chip" data-q="List all his publications">Publications</button>
-        <button class="ai-chip" data-q="What are his qualifications?">Qualifications</button>
-        <button class="ai-chip" data-q="How can I collaborate with Valentine?">Collaborate</button>
-        <button class="ai-chip" data-q="What awards has he won?">Awards</button>
-      </div>
-
-      <div class="ai-input-row">
-        <textarea id="ai-input" placeholder="Ask about Valentine…" rows="1"></textarea>
-        <button id="ai-send" aria-label="Send">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
-          </svg>
-        </button>
-      </div>
     </div>
 
-    <!-- Human / Tawk.to Tab -->
-    <div class="tab-content" id="human-tab">
-      <div class="human-tab-inner">
-        <div class="human-icon">💬</div>
-        <h3>Chat Directly with Valentine</h3>
-        <p>Valentine is available for real-time conversations about research collaborations, teaching opportunities, or any professional inquiries.</p>
-        <div class="human-online">Usually responds within a few hours</div>
-        <a class="btn-start-chat" href="#" id="open-tawk">Start Live Chat →</a>
-        <span class="divider-or">— or reach out directly —</span>
-        <a class="btn-email-alt" href="mailto:kirimivalentine@gmail.com">📧 kirimivalentine@gmail.com</a>
-        <a class="btn-email-alt" href="https://www.linkedin.com/in/valentine-kirimi-851602280" target="_blank">🔗 Connect on LinkedIn</a>
-      </div>
+    <div class="chips" id="chips">
+      <button class="chip" data-q="What research does Valentine work on?">Research focus</button>
+      <button class="chip" data-q="Tell me about his teaching experience">Teaching</button>
+      <button class="chip" data-q="List all his publications with links">Publications</button>
+      <button class="chip" data-q="What are his academic qualifications?">Qualifications</button>
+      <button class="chip" data-q="How can I collaborate with Valentine?">Collaborate</button>
+      <button class="chip" data-q="What awards has he won?">Awards</button>
     </div>
 
-  </div><!-- end #ai-panel -->
+    <div class="ai-inp-row">
+      <textarea id="ai-inp" placeholder="Ask me anything about Valentine…" rows="1"></textarea>
+      <button id="ai-snd" aria-label="Send">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
 
-  <!-- ═══════════════════════════════════════════
-       TAWK.TO LIVE CHAT
-  ════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════
+       WHATSAPP POPUP
+  ════════════════════════════════════════ -->
+  <div id="wa-popup" role="dialog" aria-label="WhatsApp">
+    <div class="wa-hdr">
+      <div class="wa-av">KV</div>
+      <div class="wa-hdr-txt">
+        <h4>Kirimi Valentine</h4>
+        <p>Educator · Researcher · Nairobi, Kenya</p>
+        <div class="wa-online">Online now</div>
+      </div>
+      <button class="wa-x" id="wa-close" aria-label="Close">✕</button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-bubble">
+        <p>👋 Hi! I'm Valentine. Feel free to message me directly about research collaborations, teaching roles, instructional design projects, or any professional inquiry. I'd love to hear from you!</p>
+        <div class="wa-time">Today</div>
+      </div>
+      <div class="wa-actions">
+        <a class="wa-btn"
+           href="https://wa.me/254746414833?text=Hi%20Valentine%2C%20I%20came%20across%20your%20portfolio%20and%20would%20love%20to%20connect!"
+           target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Open in WhatsApp
+        </a>
+        <p class="wa-note">Opens WhatsApp with a pre-filled message ✓</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       TAWK.TO SCRIPT
+  ════════════════════════════════════════ -->
   <script type="text/javascript">
     var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function(){
@@ -722,302 +785,304 @@
       s1.async = true;
       s1.src = 'https://embed.tawk.to/6a0af484c744531c43732cd7/1jotcmabk';
       s1.charset = 'UTF-8';
-      s1.setAttribute('crossorigin', '*');
-      s0.parentNode.insertBefore(s1, s0);
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
     })();
   </script>
 
-  <!-- ═══════════════════════════════════════════
-       MAIN JAVASCRIPT
-  ════════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════ -->
   <script>
 
-    /* ─────────────────────────────────────────
-       CONTACT FORM (Formspree)
-    ───────────────────────────────────────── */
-    const contactForm = document.getElementById('contactForm');
-    const formSuccess = document.getElementById('formSuccess');
-
-    contactForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const data = new FormData(contactForm);
-      try {
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
-        if (res.ok) {
-          contactForm.style.display = 'none';
-          formSuccess.style.display = 'block';
-        } else {
-          alert('Something went wrong. Please email kirimivalentine@gmail.com directly.');
-        }
-      } catch(err) {
-        alert('Something went wrong. Please email kirimivalentine@gmail.com directly.');
-      }
-    });
-
-
-    /* ─────────────────────────────────────────
-       AI PANEL — OPEN / CLOSE
-    ───────────────────────────────────────── */
-    const aiToggle  = document.getElementById('ai-toggle');
-    const aiPanel   = document.getElementById('ai-panel');
-    const aiClose   = document.getElementById('ai-close');
-
-    aiToggle.addEventListener('click', () => aiPanel.classList.toggle('open'));
-    aiClose.addEventListener('click',  () => aiPanel.classList.remove('open'));
-
-
-    /* ─────────────────────────────────────────
-       TABS
-    ───────────────────────────────────────── */
-    function switchTab(tabId) {
-      document.querySelectorAll('.ai-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.querySelector(`.ai-tab[data-tab="${tabId}"]`).classList.add('active');
-      document.getElementById(tabId).classList.add('active');
-    }
-
-    document.querySelectorAll('.ai-tab').forEach(tab => {
-      tab.addEventListener('click', () => switchTab(tab.dataset.tab));
-    });
-
-    document.getElementById('switch-to-human').addEventListener('click', () => {
-      aiPanel.classList.add('open');
-      switchTab('human-tab');
-    });
-
-
-    /* ─────────────────────────────────────────
-       TAWK.TO — START LIVE CHAT BUTTON
-    ───────────────────────────────────────── */
-    document.getElementById('open-tawk').addEventListener('click', function(e) {
-      e.preventDefault();
-      if (typeof Tawk_API !== 'undefined') {
-        if (typeof Tawk_API.maximize === 'function') {
-          // Widget already loaded — open immediately
-          Tawk_API.maximize();
-        } else {
-          // Widget still loading — queue it
-          Tawk_API.onLoad = function() {
-            Tawk_API.maximize();
-          };
-        }
-      } else {
-        // Fallback: open in new tab
-        window.open('https://embed.tawk.to/6a0af484c744531c43732cd7/1jotcmabk', '_blank');
-      }
-    });
-
-
-    /* ─────────────────────────────────────────
-       AI CHAT — MESSAGE HELPERS
-    ───────────────────────────────────────── */
-    const aiMsgs = document.getElementById('ai-msgs');
-    const aiInput = document.getElementById('ai-input');
-    const aiSend  = document.getElementById('ai-send');
-
-    function addMsg(html, role) {
-      const div = document.createElement('div');
-      div.className = `msg ${role}`;
-      div.innerHTML = `<div class="msg-bubble">${html}</div>`;
-      aiMsgs.appendChild(div);
-      aiMsgs.scrollTop = aiMsgs.scrollHeight;
-    }
-
-    function showTyping() {
-      const div = document.createElement('div');
-      div.className = 'msg bot';
-      div.id = 'typing-indicator';
-      div.innerHTML = `<div class="typing-indicator"><span></span><span></span><span></span></div>`;
-      aiMsgs.appendChild(div);
-      aiMsgs.scrollTop = aiMsgs.scrollHeight;
-    }
-
-    function hideTyping() {
-      const t = document.getElementById('typing-indicator');
-      if (t) t.remove();
-    }
-
-    function setLoading(state) {
-      aiSend.disabled = state;
-      aiInput.disabled = state;
-    }
-
-
-    /* ─────────────────────────────────────────
-       AI CHAT — SUGGESTION CHIPS
-    ───────────────────────────────────────── */
-    document.querySelectorAll('.ai-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        document.getElementById('ai-chips').style.display = 'none';
-        const q = chip.dataset.q;
-        addMsg(q, 'user');
-        callClaude(q);
+  /* ── Contact Form ── */
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST', body: new FormData(this), headers: {'Accept':'application/json'}
       });
-    });
+      if (res.ok) {
+        this.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+      } else { alert('Something went wrong. Please email kirimivalentine@gmail.com'); }
+    } catch(e) { alert('Something went wrong. Please email kirimivalentine@gmail.com'); }
+  });
 
 
-    /* ─────────────────────────────────────────
-       AI CHAT — TEXTAREA AUTO-GROW & SEND
-    ───────────────────────────────────────── */
-    aiInput.addEventListener('input', () => {
-      aiInput.style.height = 'auto';
-      aiInput.style.height = Math.min(aiInput.scrollHeight, 100) + 'px';
-    });
+  /* ══════════════════════════════════════════════════
+     BUTTON REFERENCES
+  ══════════════════════════════════════════════════ */
+  const fabAi   = document.getElementById('fab-ai');
+  const fabTawk = document.getElementById('fab-tawk');
+  const fabWa   = document.getElementById('fab-wa');
+  const aiPanel = document.getElementById('ai-panel');
+  const waPopup = document.getElementById('wa-popup');
 
-    aiInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMsg();
+
+  /* ── Tawk.to button ── */
+  fabTawk.addEventListener('click', function() {
+    // close others
+    aiPanel.classList.remove('open');
+    waPopup.classList.remove('open');
+    // open Tawk.to widget
+    if (typeof Tawk_API !== 'undefined') {
+      if (typeof Tawk_API.maximize === 'function') {
+        Tawk_API.maximize();
+      } else {
+        Tawk_API.onLoad = function() { Tawk_API.maximize(); };
       }
-    });
+    } else {
+      window.open('https://embed.tawk.to/6a0af484c744531c43732cd7/1jotcmabk','_blank');
+    }
+  });
 
-    aiSend.addEventListener('click', sendMsg);
 
-    function sendMsg() {
-      const q = aiInput.value.trim();
-      if (!q || aiSend.disabled) return;
-      document.getElementById('ai-chips').style.display = 'none';
+  /* ── WhatsApp button ── */
+  fabWa.addEventListener('click', function(e) {
+    e.stopPropagation();
+    aiPanel.classList.remove('open');
+    waPopup.classList.toggle('open');
+  });
+  document.getElementById('wa-close').addEventListener('click', function() {
+    waPopup.classList.remove('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!waPopup.contains(e.target) && e.target !== fabWa) waPopup.classList.remove('open');
+  });
+
+
+  /* ── AI Chat button ── */
+  fabAi.addEventListener('click', function(e) {
+    e.stopPropagation();
+    waPopup.classList.remove('open');
+    aiPanel.classList.toggle('open');
+  });
+  document.getElementById('ai-close').addEventListener('click', function() {
+    aiPanel.classList.remove('open');
+  });
+  document.addEventListener('click', function(e) {
+    if (!aiPanel.contains(e.target) && e.target !== fabAi) aiPanel.classList.remove('open');
+  });
+
+
+  /* ══════════════════════════════════════════════════
+     AI CHAT — HELPERS
+  ══════════════════════════════════════════════════ */
+  const aiMsgs = document.getElementById('ai-msgs');
+  const aiInp  = document.getElementById('ai-inp');
+  const aiSnd  = document.getElementById('ai-snd');
+
+  function addMsg(html, role) {
+    const d = document.createElement('div');
+    d.className = 'msg ' + role;
+    d.innerHTML = '<div class="bubble">' + html + '</div>';
+    aiMsgs.appendChild(d);
+    aiMsgs.scrollTop = aiMsgs.scrollHeight;
+  }
+
+  function showTyping() {
+    const d = document.createElement('div');
+    d.className = 'msg bot'; d.id = 'tdot';
+    d.innerHTML = '<div class="typing"><span></span><span></span><span></span></div>';
+    aiMsgs.appendChild(d);
+    aiMsgs.scrollTop = aiMsgs.scrollHeight;
+  }
+
+  function hideTyping() { const t = document.getElementById('tdot'); if(t) t.remove(); }
+
+  function setLoading(on) {
+    aiSnd.disabled = on;
+    aiInp.disabled = on;
+  }
+
+  /* chips */
+  document.querySelectorAll('.chip').forEach(function(c) {
+    c.addEventListener('click', function() {
+      document.getElementById('chips').style.display = 'none';
+      const q = this.dataset.q;
       addMsg(q, 'user');
-      aiInput.value = '';
-      aiInput.style.height = 'auto';
       callClaude(q);
-    }
+    });
+  });
+
+  /* textarea auto-grow */
+  aiInp.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = Math.min(this.scrollHeight, 96) + 'px';
+  });
+  aiInp.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+  });
+  aiSnd.addEventListener('click', sendMsg);
+
+  function sendMsg() {
+    const q = aiInp.value.trim();
+    if (!q || aiSnd.disabled) return;
+    document.getElementById('chips').style.display = 'none';
+    addMsg(q, 'user');
+    aiInp.value = ''; aiInp.style.height = 'auto';
+    callClaude(q);
+  }
 
 
-    /* ─────────────────────────────────────────
-       CLAUDE AI INTEGRATION
-       System prompt contains Valentine's full profile.
-       Conversation history is maintained for context.
-    ───────────────────────────────────────── */
-    const SYSTEM_PROMPT = `You are Valentine's personal AI assistant embedded on his portfolio website.
-Answer questions about him warmly, professionally, and concisely, based ONLY on the information below.
-Use simple HTML for formatting when it helps clarity (e.g. <strong>, <br>, bullet points with •).
-Keep replies under 160 words unless the user asks for a full list of publications.
-If asked something not in this profile, say you don't have that specific detail and suggest emailing kirimivalentine@gmail.com.
+  /* ══════════════════════════════════════════════════
+     CLAUDE AI — REAL FUNCTIONAL ASSISTANT
+     • Calls the Anthropic API directly
+     • Full conversation history kept in memory
+     • Valentine's complete profile as system prompt
+     • Handles any question intelligently
+  ══════════════════════════════════════════════════ */
 
-NAME: Kirimi Valentine Muriira
-LOCATION: Nairobi, Kenya
-EMAIL: kirimivalentine@gmail.com
-PHONE: +254 746 414 833
-LINKEDIN: https://www.linkedin.com/in/valentine-kirimi-851602280
-STATUS: Open to opportunities
+  var chatHistory = [];
 
-SUMMARY:
-Dedicated educator and researcher specialising in Learning, Design & Technology, Mathematics, and Chemistry.
-Has 8 international peer-reviewed publications. Currently completing a Master's by Research at INTI International
-University, Malaysia. Experienced with IGCSE Cambridge and CBE curricula. Passionate about AI in education,
-instructional design, and technology integration. Languages: English and Swahili.
+  var SYSTEM = [
+    "You are the personal AI assistant of Kirimi Valentine Muriira, embedded on his portfolio website.",
+    "Your job is to answer ANY question a visitor asks about Valentine — intelligently, warmly, and accurately.",
+    "Use the profile data below as your source of truth. You may reason, summarize, and elaborate naturally.",
+    "Format responses with light HTML when helpful (<strong>, <br>, bullet • lists). Keep replies concise (under 180 words) unless the visitor explicitly asks for a full list.",
+    "If a question is genuinely outside the profile data, say so politely and suggest emailing kirimivalentine@gmail.com or messaging on WhatsApp: +254 746 414 833.",
+    "",
+    "══ VALENTINE'S FULL PROFILE ══",
+    "",
+    "FULL NAME: Kirimi Valentine Muriira",
+    "LOCATION: Nairobi, Kenya (P.O Box 15055-00509)",
+    "EMAIL: kirimivalentine@gmail.com",
+    "PHONE / WHATSAPP: +254 746 414 833",
+    "LINKEDIN: https://www.linkedin.com/in/valentine-kirimi-851602280",
+    "STATUS: Open to opportunities — research, teaching, instructional design",
+    "",
+    "PROFESSIONAL SUMMARY:",
+    "Valentine is a dedicated educator and researcher specialising in Learning, Design & Technology, Mathematics, and Chemistry.",
+    "He has 8 international peer-reviewed publications and is completing a Master of Education by Research at INTI International University, Malaysia.",
+    "He has hands-on classroom experience with IGCSE Cambridge and CBE curricula across Kenya, Somaliland, and Yemen.",
+    "He is passionate about AI in education, instructional design, and integrating technology into learning.",
+    "He is fluent in English and Swahili.",
+    "",
+    "EDUCATION:",
+    "1. Master of Education in Learning, Design & Technology (By Research)",
+    "   INTI International University, Nilai, Malaysia | May 2024 – April 2026",
+    "2. Bachelor of Education Science — Mathematics & Chemistry",
+    "   The Catholic University of Eastern Africa | 2019 – 2023",
+    "",
+    "WORK EXPERIENCE:",
+    "1. Mathematics Teacher | Al-Ahagaaf International Schools, Mukalla, Yemen | Aug 2024 – Sep 2025",
+    "   IGCSE Cambridge; lesson planning, student assessment, material creation, parent collaboration.",
+    "2. Mathematics & Chemistry Teacher | Faith Sultan Mohamed School, Boorama, Somaliland | Aug 2022 – May 2024",
+    "   Lesson planning, assessment, classroom management, individualized learning.",
+    "3. Mathematics & Chemistry Teacher | Highridge Girls Secondary School, Nairobi | Apr 2022 – Aug 2022",
+    "   Lesson planning, material creation, classroom management.",
+    "4. VR Attendant & Co-Technician | Stedmak Gardens, Karen Road, Nairobi",
+    "   Team management, customer service, safety, sales & marketing, training & development.",
+    "",
+    "SKILLS:",
+    "Instructional Design | Curriculum Development | Technology Integration | Digital Learning",
+    "Research & Academic Writing | Evaluation & Assessment | Content Creation",
+    "Teaching Mathematics & Chemistry | IGCSE & CBE Curricula | Customer Service | Marketing",
+    "English (fluent) | Swahili (fluent)",
+    "",
+    "PUBLICATIONS (8 peer-reviewed):",
+    "1. Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach",
+    "   Journal: Educational Process: International Journal, Vol.18 (2025)",
+    "   DOI: http://doi.org/10.22521/edupij.2025.18.428",
+    "",
+    "2. Generative AI and Educational Assessment: A Bibliometric Mapping",
+    "   Book chapter in: Innovative Educational Assessment with Generative AI, Springer Nature Switzerland (2025)",
+    "   DOI: https://doi.org/10.1007/978-3-032-05306-0_3",
+    "",
+    "3. Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis",
+    "   Preprint (2025)",
+    "   DOI: https://doi.org/10.21203/rs.3.rs-8161995/v1",
+    "",
+    "4. Trends and Emerging Research Impact of AI in Climate Change Monitoring",
+    "   Conference: IEEE EarthSense 2025",
+    "   DOI: https://doi.org/10.1109/EarthSense66084.2025.11297307",
+    "",
+    "5. Artificial Intelligence and Sustainable Entrepreneurship Nexus",
+    "   Journal: Entrepreneurship and Sustainability Issues, 13(3) (2026)",
+    "   DOI: http://doi.org/10.9770/n3433346968",
+    "",
+    "6. Exploring AI's Role in Educational Data Mining",
+    "   Journal: International Journal on Robotics, Automation and Sciences (IJORAS), 8(1), pp.20–31 (2026)",
+    "   DOI: https://doi.org/10.33093/ijoras.2026.8.1.3",
+    "",
+    "7. The Impact of AI on Educational Content Creation",
+    "   Journal: International Journal on Robotics, Automation and Sciences (IJORAS), 8(1), pp.32–43 (2026)",
+    "   DOI: https://doi.org/10.33093/ijoras.2026.8.1.4",
+    "",
+    "8. AI-Augmented Mobile and Data-Driven Decision Making in Business",
+    "   Journal: International Journal of Interactive Mobile Technologies (IJIM), 20(07), pp.123–137 (2026)",
+    "   DOI: https://doi.org/10.3991/ijim.v20i07.61107",
+    "",
+    "RESEARCH THEMES (across all publications):",
+    "• AI in education (assessment, content creation, data mining)",
+    "• Technology-enhanced learning for neurodiverse learners",
+    "• Bibliometric analysis in education and social research",
+    "• AI in climate change monitoring",
+    "• AI and sustainable entrepreneurship",
+    "• Digital solutions for forced migration and violence",
+    "• AI in mobile technologies and business decision-making",
+    "",
+    "AWARDS & ACHIEVEMENTS:",
+    "• IEEE EarthSense 2025 — Research Paper Presenter (Sep 2025)",
+    "• International Digital Education Conference 2025 — Silver Award Winner (Oct 2025)",
+    "• ICSE 2025 – Sustainable Education Conference — Participant (Sep 2025)",
+    "• NexSymp 2025 — Reviewer, Science & Technology track (Sep 2025)",
+    "• 3rd International Article Writing Competition — Co-author of 2 winning articles (2025)",
+    "• Workshop on Proposal Defense & Viva Voce — Attendee (Jul 2025)"
+  ].join("\n");
 
-EDUCATION:
-1. Master of Education in Learning, Design & Technology
-   INTI International University, Nilai, Malaysia (May 2024 – April 2026, By Research)
-2. Bachelor of Education Science (Mathematics & Chemistry)
-   The Catholic University of Eastern Africa (2019–2023)
 
-EXPERIENCE:
-1. Mathematics Teacher — Al-Ahagaaf International Schools, Mukalla, Yemen (Aug 2024 – Sep 2025)
-   IGCSE Cambridge curriculum; lesson planning, student assessment, educational material creation.
-2. Mathematics & Chemistry Teacher — Faith Sultan Mohamed School, Boorama, Somaliland (Aug 2022 – May 2024)
-   Lesson planning, assessment, classroom management, parent collaboration.
-3. Mathematics & Chemistry Teacher — Highridge Girls Secondary School, Nairobi (Apr 2022 – Aug 2022)
-   Lesson planning, assessment, educational material creation.
-4. VR Attendant & Co-Technician — Stedmak Gardens, Karen Rd, Nairobi
-   Team management, customer service, sales and marketing, training and development.
+  async function callClaude(question) {
+    setLoading(true);
+    chatHistory.push({ role: 'user', content: question });
+    showTyping();
 
-SKILLS:
-Instructional Design, Curriculum Development, Technology Integration, Digital Learning,
-Research & Academic Writing, Evaluation & Assessment, Content Creation,
-Teaching Maths & Chemistry, IGCSE & CBE Curricula, Customer Service, Marketing, English & Swahili.
+    try {
+      var res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: SYSTEM,
+          messages: chatHistory
+        })
+      });
 
-PUBLICATIONS (8 peer-reviewed):
-1. Technology-Enhanced Education for Neurodiverse Learners: A Bibliometric Approach
-   Educational Process: International Journal, 18 (2025)
-   http://doi.org/10.22521/edupij.2025.18.428
+      var data = await res.json();
+      hideTyping();
 
-2. Generative AI and Educational Assessment: A Bibliometric Mapping
-   Springer Nature Switzerland, book chapter (2025)
-   https://doi.org/10.1007/978-3-032-05306-0_3
-
-3. Digital Frontiers in the Battle Against Violence and Forced Migration: A Bibliometric Analysis
-   Preprint (2025)
-   https://doi.org/10.21203/rs.3.rs-8161995/v1
-
-4. Trends and Emerging Research Impact of AI in Climate Change Monitoring
-   IEEE EarthSense 2025
-   https://doi.org/10.1109/EarthSense66084.2025.11297307
-
-5. Artificial Intelligence and Sustainable Entrepreneurship Nexus
-   Entrepreneurship and Sustainability Issues, 13(3) (2026)
-   http://doi.org/10.9770/n3433346968
-
-6. Exploring AI's Role in Educational Data Mining
-   International Journal on Robotics, Automation and Sciences (IJORAS), 8(1), 20–31 (2026)
-   https://doi.org/10.33093/ijoras.2026.8.1.3
-
-7. The Impact of AI on Educational Content Creation
-   International Journal on Robotics, Automation and Sciences (IJORAS), 8(1), 32–43 (2026)
-   https://doi.org/10.33093/ijoras.2026.8.1.4
-
-8. AI-Augmented Mobile and Data-Driven Decision Making in Business
-   International Journal of Interactive Mobile Technologies (IJIM), 20(07), 123–137 (2026)
-   https://doi.org/10.3991/ijim.v20i07.61107
-
-AWARDS & ACHIEVEMENTS:
-- IEEE EarthSense 2025 — Research Paper Presenter (Sep 2025)
-- International Digital Education Conference 2025 — Silver Award Winner (Oct 2025)
-- ICSE 2025 Sustainable Education — Participant (Sep 2025)
-- NexSymp 2025 — Reviewer, Science & Technology (Sep 2025)
-- 3rd International Article Writing Competition — Co-author of 2 articles (2025)
-- Workshop on Proposal Defense & Viva Voce — Attendee (Jul 2025)`;
-
-    let chatHistory = [];
-
-    async function callClaude(question) {
-      setLoading(true);
-      chatHistory.push({ role: 'user', content: question });
-      showTyping();
-
-      try {
-        const response = await fetch('https://api.anthropic.com/v1/messages', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            model: 'claude-sonnet-4-20250514',
-            max_tokens: 1000,
-            system: SYSTEM_PROMPT,
-            messages: chatHistory
-          })
-        });
-
-        const data = await response.json();
-        hideTyping();
-
-        // Extract text reply
-        const reply = (data.content && data.content.find(b => b.type === 'text'))
-          ? data.content.find(b => b.type === 'text').text
-          : "I'm sorry, I couldn't get a response right now. Please try again or email <a class='msg-link' href='mailto:kirimivalentine@gmail.com'>kirimivalentine@gmail.com</a> directly.";
-
-        chatHistory.push({ role: 'assistant', content: reply });
-        addMsg(reply, 'bot');
-
-      } catch (err) {
-        hideTyping();
-        addMsg(
-          "Sorry, something went wrong connecting to the AI. You can reach Valentine directly at " +
-          "<a class='msg-link' href='mailto:kirimivalentine@gmail.com'>kirimivalentine@gmail.com</a> " +
-          "or switch to the <strong>Chat with Valentine</strong> tab.",
-          'bot'
-        );
+      var reply = '';
+      if (data.content && data.content.length > 0) {
+        for (var i = 0; i < data.content.length; i++) {
+          if (data.content[i].type === 'text') { reply = data.content[i].text; break; }
+        }
       }
 
-      setLoading(false);
+      if (!reply) {
+        reply = "I couldn't get a response right now. Please reach Valentine directly at " +
+                "<a href='mailto:kirimivalentine@gmail.com'>kirimivalentine@gmail.com</a> or " +
+                "<a href='https://wa.me/254746414833' target='_blank'>WhatsApp</a>.";
+      }
+
+      chatHistory.push({ role: 'assistant', content: reply });
+      addMsg(reply, 'bot');
+
+    } catch(err) {
+      hideTyping();
+      addMsg(
+        "Sorry, there was a connection error. You can reach Valentine at " +
+        "<a href='mailto:kirimivalentine@gmail.com'>kirimivalentine@gmail.com</a> or " +
+        "<a href='https://wa.me/254746414833' target='_blank'>WhatsApp: +254 746 414 833</a>.",
+        'bot'
+      );
     }
+
+    setLoading(false);
+  }
 
   </script>
-
 </body>
 </html>
